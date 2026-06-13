@@ -5,17 +5,16 @@ This repo is an Arch Linux-focused reference manual covering installation comman
 
 ## 📂 Repository Architecture
 Guides, config templates, and deployment scripts are kept separate.
-linux-runbook/
-├── docs/                       # step-by-step runbooks
-│   ├── [00-preparation.md](docs/00-preparation.md)
-│   ├── [01-os-installation.md](docs/01-os-installation.md)
-│   ├── [02-system-config.md](docs/02-system-config.md)
-│   └── reference/              # background concepts referenced by the runbooks
-│       └── [etc-default.md](docs/reference/etc-default.md)
-├── configs/
-│   ├── neovim/
-│   ├── tmux/
-│   └── zsh/
-├── scripts/
-│   ├── bootstrap.sh
-│   └── backup.sh
+- **`docs/`** — step-by-step runbooks
+  - [00-preparation.md](docs/00-preparation.md)
+  - [01-os-installation.md](docs/01-os-installation.md)
+  - [02-system-config.md](docs/02-system-config.md)
+  - **`reference/`** — background concepts referenced by the runbooks
+    - [etc-default.md](docs/reference/etc-default.md)
+- **`configs/`** — config templates (mirror system paths)
+  - `neovim/`
+  - `tmux/`
+  - `zsh/`
+- **`scripts/`** — deployment helpers
+  - `bootstrap.sh`
+  - `backup.sh`
