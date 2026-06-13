@@ -1,6 +1,8 @@
 # linux-runbook
 This repo is an Arch Linux-focused reference manual covering installation commands, partitioning, dotfiles, and post-install setup, pairing documentation with actual config templates. Steps may not work on other distros.
 
+![linux-runbook](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExejY4YWcweGNyMnN1b3dkY2ZubWUxNWoxcXZvbjNnazB0ZzNjamluNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/jQQRWxSlW1tWvWigA9/giphy.gif)
+
 ---
 
 ## 📂 Repository Architecture
