@@ -30,7 +30,8 @@ mount /dev/nvme0n1p1 /mnt/boot
 ```
 
 ## Install core packages
-(Base system, Linux kernel, Firmware, Editor, Network tools)
+[`pacstrap`](./reference/pacman-cheatsheet.md) installs the following into the mounted target: Base system, Linux kernel, Firmware, Editor, Network tools.
+
 ```sh
 pacstrap -K /mnt base linux linux-firmware vim networkmanager
 ```

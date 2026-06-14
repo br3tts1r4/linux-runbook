@@ -16,5 +16,3 @@ A centralised "control panel" of plain-text files that override the defaults of 
 | `nss` / `nsswitch` | Hostname and network-name resolution order |
 
 ---
-
-Back: [System Config](../02-system-config.md)
