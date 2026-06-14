@@ -1,6 +1,15 @@
 # User Software Setup
 
-Install essential packages for daily use (e.g. `git`, `tmux`, `zsh`, `nvim`).
+## Install daily use packages
+
+```sh
+sudo pacman -S git tmux zsh nvim lshw htop gcc
+```
+
+## Hype pacakage (optional)
+```sh
+sudo pacman -S fastfetch
+```
 
 ---
 
