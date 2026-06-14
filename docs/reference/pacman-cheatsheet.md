@@ -1,7 +1,5 @@
 # Pacman
 
-Reference for `pacman`, the Arch Linux package manager.
-
 - **`pacman`** — package manager for a running Arch system; installs, updates, and removes packages into the live root (`/`).
 - **`pacstrap`** — installer helper used from the live ISO; bootstraps packages into a mounted target (e.g. `/mnt`) before the system exists.
 

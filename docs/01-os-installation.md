@@ -112,4 +112,4 @@ reboot
 ```
 
 ---
-Back: [Preparation](./00-preparation.md) | Next: [System config](./02-system-config.md)
+Back: [Installer preparation](./00-installer-preparation.md) | Next: [Firstboot configuration](./02-firstboot-configuration.md)

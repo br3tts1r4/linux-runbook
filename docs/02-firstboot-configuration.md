@@ -25,4 +25,4 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 ---
 
-Back: [OS Installation](./01-os-installation.md)
+Back: [OS Installation](./01-os-installation.md) | Next: [User software setup](./03-user-software-setup.md)
