@@ -8,11 +8,15 @@ This repo is an Arch Linux-focused reference manual covering installation comman
 ## 📂 Repository Architecture
 Guides, config templates, and deployment scripts are kept separate.
 - **`docs/`** — step-by-step runbooks
-  - [00-preparation.md](docs/00-preparation.md)
+  - [00-installer-preparation.md](docs/00-installer-preparation.md)
   - [01-os-installation.md](docs/01-os-installation.md)
-  - [02-system-config.md](docs/02-system-config.md)
+  - [02-firstboot-configuration.md](docs/02-firstboot-configuration.md)
+  - [03-user-software-setup.md](docs/03-user-software-setup.md)
+  - [04-gui-installation.md](docs/04-gui-installation.md)
+  - [05-gui-customisation.md](docs/05-gui-customisation.md)
   - **`reference/`** — background concepts referenced by the runbooks
     - [etc-default.md](docs/reference/etc-default.md)
+    - [pacman-cheatsheet.md](docs/reference/pacman-cheatsheet.md)
 - **`configs/`** — config templates (mirror system paths)
   - `neovim/`
   - `tmux/`
