@@ -72,16 +72,31 @@ sudo systemctl restart systemd-vconsole-setup.service
 ```
 
 ### Apply font at boot (optional but recommended)
-[About `/etc/mkinitcpio.conf`](./reference/etc-mkinitcpio-conf.md)
+[what is `/etc/mkinitcpio.conf` ?](./reference/etc-mkinitcpio-conf.md)
 ```sh
 sudo vim /etc/mkinitcpio.conf
 ```
-Seach for `HOOKS=(...)` and add `consolefont` after `base` and `udev`
+Skip this step if `HOOKS` already includes `sd-vconsole` or `consolefont`.
+
+In `HOOKS=(...)`, add `sd-vconsole` after `keyboard` (requires the `systemd` hook):
+
+| Hook | Role |
+|---|---|
+| `consolefont` | Legacy — loads the TTY font via shell scripts during boot |
+| `sd-vconsole` | Systemd — delegates font and keyboard layout to `systemd-vconsole-setup` |
+
 ```sh
 # Example config
-HOOKS=(base udev autodetect modconf kms keyboard keymap consolefont block filesystems fsck)
+HOOKS=(systemd autodetect microcode modconf kms keyboard sd-vconsole block filesystems fsck)
+                                                   |          |
+                                             (1st: Input) -> (2nd: Font)
 ```
 
+Rebuild after editing:
+
+```sh
+sudo mkinitcpio -P
+```
 
 ---
 
