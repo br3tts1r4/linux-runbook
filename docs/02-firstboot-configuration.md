@@ -76,7 +76,7 @@ sudo systemctl restart systemd-vconsole-setup.service
 ```sh
 sudo vim /etc/mkinitcpio.conf
 ```
-Seach for `HOOKS=(...)` and add `consolefont` after `udev`
+Seach for `HOOKS=(...)` and add `consolefont` after `base` and `udev`
 ```sh
 # Example config
 HOOKS=(base udev autodetect modconf kms keyboard keymap consolefont block filesystems fsck)
