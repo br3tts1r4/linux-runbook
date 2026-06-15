@@ -7,6 +7,7 @@ sudo pacman -S git tmux zsh nvim lshw htop gcc
 ```
 
 ## Hype pacakage (optional)
+
 ```sh
 sudo pacman -S fastfetch
 ```

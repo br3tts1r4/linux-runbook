@@ -20,9 +20,9 @@ sudo pacman -S --needed mesa vulkan-radeon
 
 Check GPU generation, then install the matching driver package:
 
-| Generation | GPUs | Package |
-|---|---|---|
-| Turing & newer | RTX 20/30/40/50-series, GTX 16-series | `nvidia-open-dkms` |
+| Generation     | GPUs                                                     | Package                                           |
+| -------------- | -------------------------------------------------------- | ------------------------------------------------- |
+| Turing & newer | RTX 20/30/40/50-series, GTX 16-series                    | `nvidia-open-dkms`                                |
 | Pascal & older | GTX 10-series (e.g. 1080, 1060), GTX 900-series, Titan X | `nvidia-dkms` (required — open modules will fail) |
 
 **Pascal and older:**
@@ -37,13 +37,13 @@ sudo pacman -S --needed linux-headers nvidia-utils egl-wayland nvidia-dkms
 sudo pacman -S --needed linux-headers nvidia-utils egl-wayland nvidia-open-dkms
 ```
 
-| Package | Purpose |
-|---|---|
-| `linux-headers` | Kernel interface files needed to compile out-of-tree driver modules |
-| `nvidia-utils` | User-space libraries for 3D APIs (Vulkan, GLX, etc.) |
-| `egl-wayland` | Bridges NVIDIA EGL to Wayland for modern compositors (Hyprland, Sway, GNOME) |
-| `nvidia-dkms` | Closed-source kernel driver for Pascal and older GPUs; DKMS rebuilds on kernel updates |
-| `nvidia-open-dkms` | Open-source kernel modules for Turing and newer GPUs; DKMS rebuilds on kernel updates |
+| Package            | Purpose                                                                                |
+| ------------------ | -------------------------------------------------------------------------------------- |
+| `linux-headers`    | Kernel interface files needed to compile out-of-tree driver modules                    |
+| `nvidia-utils`     | User-space libraries for 3D APIs (Vulkan, GLX, etc.)                                   |
+| `egl-wayland`      | Bridges NVIDIA EGL to Wayland for modern compositors (Hyprland, Sway, GNOME)           |
+| `nvidia-dkms`      | Closed-source kernel driver for Pascal and older GPUs; DKMS rebuilds on kernel updates |
+| `nvidia-open-dkms` | Open-source kernel modules for Turing and newer GPUs; DKMS rebuilds on kernel updates  |
 
 ### Configure graphics driver (KMS)
 
@@ -144,12 +144,12 @@ env = CLUTTER_BACKEND,wayland
 
 ### Hyprland default keybindings
 
-| Shortcut | Action |
-|---|---|
-| `Super + Q` | Open terminal |
-| `Super + R` | Open the application menu launcher |
-| `Super + M` | Exit Hyprland back to the TTY console |
-| `Super + Arrow keys` | Move focus between windows |
+| Shortcut             | Action                                |
+| -------------------- | ------------------------------------- |
+| `Super + Q`          | Open terminal                         |
+| `Super + R`          | Open the application menu launcher    |
+| `Super + M`          | Exit Hyprland back to the TTY console |
+| `Super + Arrow keys` | Move focus between windows            |
 
 ## Install GUI environment
 
@@ -190,6 +190,12 @@ sudo pacman -S waybar
 
 ```sh
 sudo pacman -S kitty
+```
+
+### Copy & Paste
+
+```sh
+sudo pacman -S wl-clipboard
 ```
 
 ### Other
