@@ -4,4 +4,4 @@ Customise the desktop environment, themes, and appearance.
 
 ---
 
-Back: [GUI installation](./04-gui-installation.md)
+Back: [GUI setup](./05-gui-setup.md)

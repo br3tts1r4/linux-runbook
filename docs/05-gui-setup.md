@@ -206,4 +206,4 @@ sudo pacman -S firefox obsidian
 
 ---
 
-Back: [User software setup](./03-user-software-setup.md) | Next: [GUI customisation](./05-gui-customisation.md)
+Back: [Prompt setup](./04-prompt-setup.md) | Next: [GUI customisation](./06-gui-customisation.md)
