@@ -3,9 +3,13 @@
 Setup the system after first boot.
 
 ## Install daily use packages
-
+Install pacakge from [Arch package file](../dotfiles/arch/pkgs.txt)
 ```sh
-sudo pacman -S git tmux zsh nvim lshw htop gcc
+# Current explicitly-installed packages
+pacman -Qqe > pkgs.txt
+
+# Reinstall on a new machine
+pacman -S --needed - < pkgs.txt
 ```
 
 ## Hype pacakage (optional)

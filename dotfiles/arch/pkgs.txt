@@ -1,0 +1,19 @@
+# Dotfiles — symlink config from this repo
+stow
+
+# Shell & editor
+zsh
+tmux
+nvim
+
+# Build tools
+gcc
+make
+openssl
+libyaml
+
+# System utilities
+git
+lshw
+htop
+tree
