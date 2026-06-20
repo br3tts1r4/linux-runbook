@@ -41,5 +41,31 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
 ---
+## Change TTY after boot (optional | can skip | back after done tty setup)
+Show the configuration of replacing default TTY1.
+Ideally, it need to change the `systemd` service for `getty.target` to point to `kmscon@tty2`(prerequisite KMSCON) instead `getty@tty1`(default).
+```sh
+sudo mkdir -p /etc/systemd/system/kmsconvt@tty2.service.d/
+sudo vim /etc/systemd/system/kmsconvt@tty2.service.d/autologin.conf
+```
+Example of init file
+```ini
+[Service]
+# Clear the inherited ExecStart before setting our own
+ExecStart=
+
+# Launch kmscon on this TTY with autologin via agetty
+ExecStart=-/usr/bin/kmscon \
+    --vt=%I \          # bind to the TTY passed by systemd (e.g. tty2)
+    --seats=seat0 \    # target the default seat
+    --no-switchvt \    # don't auto-switch to this VT on start
+    --font-name "Fira Code" \
+    --font-size 12 \
+    --term xterm-256color \
+    -- /sbin/agetty \      # hand off to agetty for login handling
+        --autologin brett \ # skip password prompt for this user
+        --noclear %I \      # don't clear screen before login
+        $TERM
+```
 
 Back: [OS Installation](./01-os-installation.md) | Next: [TTY Setup](./03-tty-setup.md)
