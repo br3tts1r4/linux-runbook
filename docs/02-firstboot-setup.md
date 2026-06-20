@@ -3,7 +3,9 @@
 Setup the system after first boot.
 
 ## Install daily use packages
+
 Install pacakge from [Arch package file](../dotfiles/arch/pkgs.txt)
+
 ```sh
 # Current explicitly-installed packages
 pacman -Qqe > pkgs.txt
@@ -12,12 +14,32 @@ pacman -Qqe > pkgs.txt
 pacman -S --needed - < pkgs.txt
 ```
 
-## Hype pacakage (optional)
+## Change shell to zsh (prerequisite zsh)
+
+check shell location
 
 ```sh
-sudo pacman -S fastfetch
+pacman -Ql zsh | grep '/zsh$'
 ```
 
+change shell
+
+```sh
+chsh -s /usr/bin/zsh      # user shell
+sudo chsh -s /usr/bin/zsh # root shell
+```
+
+verify
+
+```sh
+grep "^$USER" /etc/passwd
+```
+
+## Create hushlogin file
+
+```sh
+touch ~/.hushlogin
+```
 
 ## Show boot messages
 
@@ -41,31 +63,47 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
 ---
+
 ## Change TTY after boot (optional | can skip | back after done tty setup)
+
 Show the configuration of replacing default TTY1.
 Ideally, it need to change the `systemd` service for `getty.target` to point to `kmscon@tty2`(prerequisite KMSCON) instead `getty@tty1`(default).
+
+### Change TTY1 to TTY2
+
+Create autologin init by copying the template from [autologin.conf](../scripts/systemd/autologin.conf)
+
 ```sh
 sudo mkdir -p /etc/systemd/system/kmsconvt@tty2.service.d/
 sudo vim /etc/systemd/system/kmsconvt@tty2.service.d/autologin.conf
 ```
-Example of init file
-```ini
-[Service]
-# Clear the inherited ExecStart before setting our own
-ExecStart=
 
-# Launch kmscon on this TTY with autologin via agetty
-ExecStart=-/usr/bin/kmscon \
-    --vt=%I \          # bind to the TTY passed by systemd (e.g. tty2)
-    --seats=seat0 \    # target the default seat
-    --no-switchvt \    # don't auto-switch to this VT on start
-    --font-name "Fira Code" \
-    --font-size 12 \
-    --term xterm-256color \
-    -- /sbin/agetty \      # hand off to agetty for login handling
-        --autologin brett \ # skip password prompt for this user
-        --noclear %I \      # don't clear screen before login
-        $TERM
+Memory Reload
+
+```sh
+sudo systemctl daemon-reload
+```
+
+### Change back to TTY1 (optional)
+
+Remove autologin init
+
+```sh
+sudo rm -r /etc/systemd/system/kmsconvt@tty2.service.d/
+```
+
+Manage getty serivce
+
+```sh
+# sudo systemctl disable kmsconvt@tty2.service # Skip this if dont want to disable tty2
+sudo systemctl unmask getty@tty1.service
+sudo systemctl enable getty@tty1.service
+```
+
+Memory Reload
+
+```sh
+sudo systemctl daemon-reload
 ```
 
 Back: [OS Installation](./01-os-installation.md) | Next: [TTY Setup](./03-tty-setup.md)

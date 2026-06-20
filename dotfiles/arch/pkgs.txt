@@ -17,3 +17,6 @@ git
 lshw
 htop
 tree
+
+## Optional Hype pacakage (uncomment to install)
+# fastfetch
