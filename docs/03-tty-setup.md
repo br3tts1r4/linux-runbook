@@ -231,4 +231,8 @@ sudo mkinitcpio -P
 
 ---
 
+## (Optional) Change boot TTY for KMSCON
+
+([Systemd change default TTY](./reference/etc-systemd-change-boot-tty.md) — work in progress)
+
 Back: [Firstboot setup](./02-firstboot-setup.md) | Next: [Prompt setup](./04-prompt-setup.md)

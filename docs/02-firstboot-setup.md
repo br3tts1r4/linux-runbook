@@ -2,6 +2,21 @@
 
 Setup the system after first boot.
 
+## (Optional | can skip) Check boot level
+check boot level
+ ```sh
+ sudo systemctl get-default 
+ ```
+ set boot level
+ ```sh
+sudo systemctl set-default graphical.target
+ ```
+| Target | Legacy runlevel | Description |
+|---|---|---|
+| `multi-user.target` | 3 | Console, no GUI |
+| `graphical.target` | 5 | GUI / display manager |
+| `rescue.target` | 1 | Single user, minimal |
+
 ## Install daily use packages
 
 Install pacakge from [Arch package file](../dotfiles/arch/pkgs.txt)
@@ -63,47 +78,5 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
 ---
-
-## Change TTY after boot (optional | can skip | back after done tty setup)
-
-Show the configuration of replacing default TTY1.
-Ideally, it need to change the `systemd` service for `getty.target` to point to `kmscon@tty2`(prerequisite KMSCON) instead `getty@tty1`(default).
-
-### Change TTY1 to TTY2
-
-Create autologin init by copying the template from [autologin.conf](../scripts/systemd/autologin.conf)
-
-```sh
-sudo mkdir -p /etc/systemd/system/kmsconvt@tty2.service.d/
-sudo vim /etc/systemd/system/kmsconvt@tty2.service.d/autologin.conf
-```
-
-Memory Reload
-
-```sh
-sudo systemctl daemon-reload
-```
-
-### Change back to TTY1 (optional)
-
-Remove autologin init
-
-```sh
-sudo rm -r /etc/systemd/system/kmsconvt@tty2.service.d/
-```
-
-Manage getty serivce
-
-```sh
-# sudo systemctl disable kmsconvt@tty2.service # Skip this if dont want to disable tty2
-sudo systemctl unmask getty@tty1.service
-sudo systemctl enable getty@tty1.service
-```
-
-Memory Reload
-
-```sh
-sudo systemctl daemon-reload
-```
 
 Back: [OS Installation](./01-os-installation.md) | Next: [TTY Setup](./03-tty-setup.md)
