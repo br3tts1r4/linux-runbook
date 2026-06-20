@@ -31,6 +31,7 @@ Background notes linked from the runbooks.
 | [`/etc/default/`](docs/reference/etc-default.md) | System default overrides |
 | [`mkinitcpio.conf`](docs/reference/etc-mkinitcpio-conf.md) | Initramfs configuration |
 | [Pacman](docs/reference/pacman-cheatsheet.md) | Package manager commands |
+| [Systemd default TTY](docs/reference/etc-systemd-change-boot-tty.md) | Switch boot TTY to kmscon (tty2) |
 
 ### Dotfiles
 
