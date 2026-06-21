@@ -101,14 +101,57 @@ Ideally for directory layout
 
 ---
 
-### Sync dotfiles/
+## Sync dotfiles
+
+Run from the `dotfiles/` directory in this repo.
+
+**Create symlinks:**
+
 ```sh
 stow --target="$HOME/.config" .
 ```
-After synced use this to resync `dotsync`
-```init
-# Example of underhood 
+
+**Remove symlinks:**
+
+```sh
+stow --delete --target="$HOME/.config" .
+```
+
+After the initial sync, add a shell alias to re-run stow quickly:
+
+```sh
 alias dotsync="stow --target=$HOME/.config ."
 ```
 
+If stow reports a `locale` error or warning, follow the next section.
+
+---
+
+## Set locale
+
+Edit `/etc/locale.gen` and uncomment:
+
+```text
+en_US.UTF-8 UTF-8
+```
+
+Generate locales:
+
+```sh
+sudo locale-gen
+```
+
+Set system-wide default:
+
+```sh
+sudo localectl set-locale LANG=en_US.UTF-8
+```
+
+Verify:
+
+```sh
+locale -a
+```
+
+---
 Back: [OS Installation](./01-os-installation.md) | Next: [TTY Setup](./03-tty-setup.md)
