@@ -26,18 +26,7 @@ sudo mkdir -p /etc/kmscon
 sudo vim /etc/kmscon/kmscon.conf
 ```
 
-Essential settings:
-
-```txt
-font-name=Fira Code
-font-size=18
-xkb-layout=us
-no-mouse
-
-# GPU acceleration (recommended)
-hwaccel
-render-engine=gl
-```
+Essential settings: [kmscon.conf](../scripts/kmscon/kmscon.conf)
 
 ### Test on tty1
 
@@ -84,7 +73,10 @@ sudo systemctl enable getty@tty3.service
 ```
 
 ### Switch TTY
-
+By keyboard: 
+- first pressed & hold [`Ctrl` + `Fn` + `Alt`]
+- second pressed [F1 | F2 | F3]
+By cmd:
 ```sh
 sudo chvt 1
 sudo chvt 2
@@ -230,7 +222,7 @@ sudo mkinitcpio -P
 ```
 
 ---
-
+ 
 ## (Optional) Change boot TTY for KMSCON
 
 ([Systemd change default TTY](./reference/etc-systemd-change-boot-tty.md) — work in progress)
