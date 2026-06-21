@@ -4,3 +4,7 @@ XDG_DATA_HOME    = ~/.local/share
 XDG_CACHE_HOME   = ~/.cache
 XDG_STATE_HOME   = ~/.local/state
 HISTFILE         = ~/.local/state/zsh/history
+
+# Starship Path
+export STARSHIP_CONFIG=~/.config/starship/starship.toml
+export STARSHIP_CACHE=~/.cache/starship/

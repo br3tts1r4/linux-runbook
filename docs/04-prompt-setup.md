@@ -1,6 +1,7 @@
 # Prompt Setup
 
-Configure the shell prompt and related tooling.
+## Starship
+Reference: [Starship doc](https://starship.rs/config/)
 
 ---
 

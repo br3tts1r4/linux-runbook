@@ -7,3 +7,6 @@ alias lla="ls -la --color=auto"
 # vim Aliases
 alias vim="nvim"
 alias vi="nvim"
+
+# Starship Prompt
+eval "$(starship init zsh)"

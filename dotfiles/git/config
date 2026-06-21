@@ -1,0 +1,86 @@
+# ---------------------------------------------------------------------------
+# General configs
+# ---------------------------------------------------------------------------
+[core]
+	editor = nvim
+	autocrlf = input
+	whitespace = fix,trailing-space,space-before-tab
+	pager = less -FRX
+
+[init]
+	defaultBranch = master
+
+[pull]
+	rebase = true
+
+[rebase]
+	autosquash = true
+	autostash = true
+
+[merge]
+	conflictstyle = diff3
+	tool = vimdiff
+
+[diff]
+	algorithm = histogram
+	colorMoved = zebra
+
+[fetch]
+	prune = true
+	prunetags = true
+
+[push]
+	default = current
+	autoSetupRemote = true
+
+[status]
+	short = true
+	branch = true
+
+[log]
+	oneline = false
+	date = iso
+
+[color]
+	ui = auto
+
+[color "branch"]
+	current = yellow bold
+	local   = green
+	remote  = red
+
+[color "diff"]
+	meta       = yellow bold
+	frag       = magenta bold
+	old        = red bold
+	new        = green bold
+	whitespace = red reverse
+
+[alias]
+	st   = status
+	co   = checkout
+	br   = branch
+	lg   = log --graph --oneline --decorate --all
+	lf   = log --pretty=fuller
+	undo = reset HEAD~1 --mixed
+	wip  = !git add -A && git commit -m 'wip: checkpoint'
+	pub  = push -u origin HEAD
+
+# ---------------------------------------------------------------------------
+# Identity config
+# ---------------------------------------------------------------------------
+
+# GitHub — matches any repo cloned under ~/projects/github/
+[includeIf "gitdir:~/projects/github/"]
+	path = ~/.config/git/github
+
+# Bitbucket — matches any repo cloned under ~/projects/bitbucket/
+[includeIf "gitdir:~/projects/bitbucket/"]
+	path = ~/.config/git/bitbucket
+
+# Fallback default identity (used when no includeIf fires).
+# Fill in or remove if you always work within the routed directories.
+[user]
+	name  = Your Name
+	email = your@email.com
+	signingkey =

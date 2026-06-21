@@ -1,10 +1,13 @@
-# Dotfiles — symlink config from this repo
-stow
+## Optional Hype pacakage (uncomment to install)
+# fastfetch
 
 # Shell & editor
 zsh
 tmux
 nvim
+
+# Prompt & Terminal
+starship
 
 # Build tools
 gcc
@@ -17,6 +20,8 @@ git
 lshw
 htop
 tree
+stow
 
-## Optional Hype pacakage (uncomment to install)
-# fastfetch
+# Dev 
+mise
+
