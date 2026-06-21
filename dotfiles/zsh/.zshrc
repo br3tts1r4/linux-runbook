@@ -8,5 +8,8 @@ alias lla="ls -la --color=auto"
 alias vim="nvim"
 alias vi="nvim"
 
+# Stow Alias for dotfiles sync
+alias dotsync="stow --target=$HOME/.config ."
+
 # Starship Prompt
 eval "$(starship init zsh)"

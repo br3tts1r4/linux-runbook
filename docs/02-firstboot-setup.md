@@ -101,4 +101,14 @@ Ideally for directory layout
 
 ---
 
+### Sync dotfiles/
+```sh
+stow --target="$HOME/.config" .
+```
+After synced use this to resync `dotsync`
+```init
+# Example of underhood 
+alias dotsync="stow --target=$HOME/.config ."
+```
+
 Back: [OS Installation](./01-os-installation.md) | Next: [TTY Setup](./03-tty-setup.md)
