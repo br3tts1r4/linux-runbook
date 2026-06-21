@@ -77,6 +77,28 @@ Regenerate the GRUB config to apply:
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
+## Organise SSH directory
+Setup SSH directory
+```sh
+mkdir -p ~/.ssh/keys
+chmod 700 ~/.ssh
+chmod 700 ~/.ssh/keys
+touch ~/.ssh/config
+chmod 600 ~/.ssh/config
+```
+Ideally for directory layout
+| Path | Permission |
+|---|---|
+| `~/.ssh/` | `700` |
+| `~/.ssh/config` | `600` |
+| `~/.ssh/keys/*` (private) | `600` |
+| `~/.ssh/keys/*.pub` | `644` |
+| `~/.ssh/known_hosts` | `644` |
+| `~/.ssh/authorized_keys` | `600` |
+
+[SSH template configuration file](../scripts/ssh/config)
+[SSH command cheatsheet](./reference/ssh-cmd.md)
+
 ---
 
 Back: [OS Installation](./01-os-installation.md) | Next: [TTY Setup](./03-tty-setup.md)

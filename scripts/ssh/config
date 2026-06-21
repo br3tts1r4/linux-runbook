@@ -1,0 +1,36 @@
+# ── This SSH template configuration file ──
+# ── Global defaults (applied to every host unless overridden) ──
+Host *
+    AddKeysToAgent yes
+    IdentitiesOnly yes
+    ServerAliveInterval 60
+    ServerAliveCountMax 3
+
+# ── Work hosts ──
+Host work
+    HostName work.example.com
+    User deploy
+    Port 22
+    IdentityFile ~/.ssh/keys/work_ed25519
+
+Host work-tunnel
+    HostName work.example.com
+    User deploy
+    Port 443
+    IdentityFile ~/.ssh/keys/work_ed25519
+    ProxyJump bastion
+
+# ── Personal ──
+Host personal
+    HostName myserver.io
+    User brett
+    IdentityFile ~/.ssh/keys/personal_ed25519
+
+# ── GitHub / GitLab ──
+Host github.com
+    User git
+    IdentityFile ~/.ssh/keys/personal_ed25519
+
+Host gitlab.com
+    User git
+    IdentityFile ~/.ssh/keys/work_ed25519
