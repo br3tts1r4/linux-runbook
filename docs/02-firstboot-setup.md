@@ -153,5 +153,21 @@ Verify:
 locale -a
 ```
 
+## Change zsh config
+Create zsh config dir (If no directory)
+```sh
+sudo mkdir -p /etc/zsh
+```
+
+Edit `/etc/zsh/zshenv`
+```text
+export ZDOTDIR="$HOME/.config/zsh"
+```
+Verify:
+```sh
+source /etc/zsh/zshenv
+echo $ZDOTDIR
+```
+
 ---
 Back: [OS Installation](./01-os-installation.md) | Next: [TTY Setup](./03-tty-setup.md)
