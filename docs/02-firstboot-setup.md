@@ -33,7 +33,10 @@ pacman -S --needed - < pkgs.txt
 # -u skip removal if another package depends on it
 pacman -Rsu package-name
 ```
-
+## Connect Wifi via NetworkManager Text-UI
+```sh
+nmtui
+```
 
 ## Change shell to zsh (prerequisite zsh)
 
