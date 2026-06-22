@@ -69,25 +69,33 @@
 # ---------------------------------------------------------------------------
 # Identity config
 # ---------------------------------------------------------------------------
+# Order matters: default loads first; includeIf overrides when remote matches.
+# Requires Git 2.36+. Repo needs remote.origin.url set (git remote add origin …).
 
-# GitHub — matches any local path when origin points to GitHub (HTTPS or SSH)
-[includeIf "hasconfig:remote.origin.url:https://github.com/**"]
+# Fallback default identity
+[include]
+	path = ~/.config/git/gitdefault.inc
+
+# GitHub
+[includeIf "hasconfig:remote.origin.url:https://github.com/"]
 	path = ~/.config/git/github.inc
-[includeIf "hasconfig:remote.origin.url:git@github.com:**"]
+[includeIf "hasconfig:remote.origin.url:git@github.com:"]
+	path = ~/.config/git/github.inc
+[includeIf "hasconfig:remote.origin.url:ssh://git@github.com/"]
 	path = ~/.config/git/github.inc
 
 # Bitbucket
-[includeIf "hasconfig:remote.origin.url:https://bitbucket.org/**"]
+[includeIf "hasconfig:remote.origin.url:https://bitbucket.org/"]
 	path = ~/.config/git/bitbucket.inc
-[includeIf "hasconfig:remote.origin.url:git@bitbucket.org:**"]
+[includeIf "hasconfig:remote.origin.url:git@bitbucket.org:"]
+	path = ~/.config/git/bitbucket.inc
+[includeIf "hasconfig:remote.origin.url:ssh://git@bitbucket.org/"]
 	path = ~/.config/git/bitbucket.inc
 
 # GitLab
-[includeIf "hasconfig:remote.origin.url:https://gitlab.com/**"]
+[includeIf "hasconfig:remote.origin.url:https://gitlab.com/"]
 	path = ~/.config/git/gitlab.inc
-[includeIf "hasconfig:remote.origin.url:git@gitlab.com:**"]
+[includeIf "hasconfig:remote.origin.url:git@gitlab.com:"]
 	path = ~/.config/git/gitlab.inc
-
-# Default
-[include]
-	path = ~/.config/git/gitdefault.inc
+[includeIf "hasconfig:remote.origin.url:ssh://git@gitlab.com/"]
+	path = ~/.config/git/gitlab.inc
