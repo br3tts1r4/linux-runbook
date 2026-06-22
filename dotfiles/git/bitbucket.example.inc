@@ -1,5 +1,5 @@
 # ~/.config/git/bitbucket.inc
-# Included automatically for repos under ~/projects/bitbucket/
+# Included when remote.origin.url points to bitbucket.org (any local path)
 
 [user]
 	name  = BitbucketUserName

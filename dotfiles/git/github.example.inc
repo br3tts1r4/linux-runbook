@@ -1,5 +1,5 @@
 # ~/.config/git/github.inc
-# Included automatically for repos under ~/projects/github/
+# Included when remote.origin.url points to github.com (any local path)
 
 [user]
 	name  = Your Name

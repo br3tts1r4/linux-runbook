@@ -70,20 +70,24 @@
 # Identity config
 # ---------------------------------------------------------------------------
 
-# Fallback default identity (used when no includeIf fires).
-[user]
-    name  = fallbackGitUser
-    email = fallback-git-email@email.com
-    signingkey =
+# Default
+[include]
+	path = ~/.config/git/default.inc
 
-# GitHub
-[includeIf "gitdir/i:**/github/**"]
-    path = ~/.config/git/github.inc
+# GitHub — matches any local path when origin points to GitHub (HTTPS or SSH)
+[includeIf "hasconfig:remote.origin.url:https://github.com/**"]
+	path = ~/.config/git/github.inc
+[includeIf "hasconfig:remote.origin.url:git@github.com:**"]
+	path = ~/.config/git/github.inc
 
 # Bitbucket
-#[includeIf "gitdir/i:**/bitbucket/**"]
-#    path = ~/.config/git/bitbucket.inc
+[includeIf "hasconfig:remote.origin.url:https://bitbucket.org/**"]
+	path = ~/.config/git/bitbucket.inc
+[includeIf "hasconfig:remote.origin.url:git@bitbucket.org:**"]
+	path = ~/.config/git/bitbucket.inc
 
-# Gitlab
-#[includeIf "gitdir/i:**/gitlab/**"]
-#    path = ~/.config/git/gitlab.inc
+# GitLab
+[includeIf "hasconfig:remote.origin.url:https://gitlab.com/**"]
+	path = ~/.config/git/gitlab.inc
+[includeIf "hasconfig:remote.origin.url:git@gitlab.com:**"]
+	path = ~/.config/git/gitlab.inc

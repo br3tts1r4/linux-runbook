@@ -1,5 +1,5 @@
 # ~/.config/git/gitlab.inc
-# Included automatically for repos under ~/projects/gitlab/
+# Included when remote.origin.url points to gitlab.com (any local path)
 
 [user]
 	name  = GitLabUserName
