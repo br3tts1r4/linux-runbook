@@ -26,6 +26,6 @@ Temporary Items
 .apdisk
 
 # Git indentities
-github
-gitlab
-bitbucket
+github.inc
+gitlab.inc
+bitbucket.inc
