@@ -70,10 +70,6 @@
 # Identity config
 # ---------------------------------------------------------------------------
 
-# Default
-[include]
-	path = ~/.config/git/gitdefault.inc
-
 # GitHub — matches any local path when origin points to GitHub (HTTPS or SSH)
 [includeIf "hasconfig:remote.origin.url:https://github.com/**"]
 	path = ~/.config/git/github.inc
@@ -91,3 +87,7 @@
 	path = ~/.config/git/gitlab.inc
 [includeIf "hasconfig:remote.origin.url:git@gitlab.com:**"]
 	path = ~/.config/git/gitlab.inc
+
+# Default
+[include]
+	path = ~/.config/git/gitdefault.inc
