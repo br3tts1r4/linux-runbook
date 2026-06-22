@@ -70,17 +70,16 @@
 # Identity config
 # ---------------------------------------------------------------------------
 
+# Fallback default identity (used when no includeIf fires).
+[user]
+    name  = fallbackGitUser
+    email = fallback-git-email@email.com
+    signingkey =
+
 # GitHub — matches any repo cloned under ~/projects/github/
 [includeIf "gitdir:~/projects/github/"]
-	path = ~/.config/git/github.inc
+    path = ~/.config/git/github.inc
 
 # Bitbucket — matches any repo cloned under ~/projects/bitbucket/
 #[includeIf "gitdir:~/projects/bitbucket/"]
-#	path = ~/.config/git/bitbucket.inc
-
-# Fallback default identity (used when no includeIf fires).
-# Fill in or remove if you always work within the routed directories.
-[user]
-	name  = fallbackGitUser
-	email = fallback-git-email@email.com
-	signingkey =
+#   path = ~/.config/git/bitbucket.inc
