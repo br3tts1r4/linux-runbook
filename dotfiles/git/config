@@ -76,10 +76,14 @@
     email = fallback-git-email@email.com
     signingkey =
 
-# GitHub — matches any repo cloned under ~/projects/github/
-[includeIf "gitdir:~/projects/github/"]
+# GitHub
+[includeIf "gitdir/i:**/github/**"]
     path = ~/.config/git/github.inc
 
-# Bitbucket — matches any repo cloned under ~/projects/bitbucket/
-#[includeIf "gitdir:~/projects/bitbucket/"]
-#   path = ~/.config/git/bitbucket.inc
+# Bitbucket
+#[includeIf "gitdir/i:**/bitbucket/**"]
+#    path = ~/.config/git/bitbucket.inc
+
+# Gitlab
+#[includeIf "gitdir/i:**/gitlab/**"]
+#    path = ~/.config/git/gitlab.inc
