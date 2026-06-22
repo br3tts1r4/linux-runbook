@@ -25,9 +25,15 @@ Install pacakge from [Arch package file](../dotfiles/arch/pkgs.txt)
 # Current explicitly-installed packages
 pacman -Qqe > pkgs.txt
 
-# Reinstall on a new machine
+# Install pacakge from file
 pacman -S --needed - < pkgs.txt
+
+# Remove pacakage
+# -s included dependecy
+# -u skip removal if another package depends on it
+pacman -Rsu package-name
 ```
+
 
 ## Change shell to zsh (prerequisite zsh)
 
