@@ -1,9 +1,9 @@
-# ~/.config/git/bitbucket
+# ~/.config/git/bitbucket.inc
 # Included automatically for repos under ~/projects/bitbucket/
 
 [user]
-	name  = Your Name
-	email = you@yourworkdomain.com
+	name  = BitbucketUserName
+	email = bitbucket-email@bitbucket.org
 	signingkey = YYYYYYYYYYYYYYYY
 
 [commit]

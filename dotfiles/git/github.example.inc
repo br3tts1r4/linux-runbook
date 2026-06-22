@@ -1,4 +1,4 @@
-# ~/.config/git/github
+# ~/.config/git/github.inc
 # Included automatically for repos under ~/projects/github/
 
 [user]
