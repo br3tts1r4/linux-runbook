@@ -1,4 +1,4 @@
-# ~/.config/git/default.inc
+# ~/.config/git/gitdefault.inc
 # Default identity when no includeIf matches
 
 [user]

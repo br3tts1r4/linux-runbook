@@ -72,7 +72,7 @@
 
 # Default
 [include]
-	path = ~/.config/git/default.inc
+	path = ~/.config/git/gitdefault.inc
 
 # GitHub — matches any local path when origin points to GitHub (HTTPS or SSH)
 [includeIf "hasconfig:remote.origin.url:https://github.com/**"]
