@@ -1,27 +1,16 @@
-## Optional Hype pacakage (uncomment to install)
-# fastfetch
-
-# Shell & editor
+fastfetch
 zsh
 tmux
 nvim
-
-# Prompt & Terminal
-starship
-
-# Build tools
 gcc
 make
 openssl
 libyaml
-
-# System utilities
-git
 lshw
 htop
 tree
 stow
-
-# Dev 
+starship
+git
 mise
-
+lazygit
