@@ -8,6 +8,9 @@ alias lla="ls -la --color=auto"
 alias vim="nvim"
 alias vi="nvim"
 
+# acpi Alias for battery status
+alias lsbat="acpi -b"
+
 # Stow Alias for dotfiles sync
 alias dotsync="stow --target=$HOME/.config ."
 
