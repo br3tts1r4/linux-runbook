@@ -6,6 +6,7 @@
 	autocrlf = input
 	whitespace = fix,trailing-space,space-before-tab
 	pager = less -FRX
+	excludesFile = ~/.config/git/gitignore-global
 
 [init]
 	defaultBranch = master
@@ -60,12 +61,12 @@
 	st   = status
 	co   = checkout
 	br   = branch
-	lg   = log --graph --oneline --decorate --all
+	logg = log --graph --oneline --decorate --all
 	lf   = log --pretty=fuller
 	undo = reset HEAD~1 --mixed
 	wip  = !git add -A && git commit -m 'wip: checkpoint'
 	pub  = push -u origin HEAD
-
+	
 # ---------------------------------------------------------------------------
 # Identity config
 # ---------------------------------------------------------------------------

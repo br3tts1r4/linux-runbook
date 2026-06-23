@@ -30,3 +30,4 @@ gitdefault.inc
 github.inc
 gitlab.inc
 bitbucket.inc
+gitignore-global
