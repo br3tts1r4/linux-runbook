@@ -14,5 +14,8 @@ alias lsbat="acpi -b"
 # Stow Alias for dotfiles sync
 alias dotsync="stow --target=$HOME/.config ."
 
+# ACTIVE MISE
+eval "$(mise activate zsh)"
+
 # Starship Prompt
 eval "$(starship init zsh)"
