@@ -31,3 +31,6 @@ github.inc
 gitlab.inc
 bitbucket.inc
 gitignore-global
+
+# Starship
+starship.toml
