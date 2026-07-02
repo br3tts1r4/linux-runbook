@@ -1,23 +1,53 @@
 # ~/.config/starship.toml
 
-# Use custom format
+####################################### Prompt Style #########################################
 format = '''
-[┌───────────────────>](bold green)
-[│](bold green)$directory$rust$package
-[└─>](bold green) '''
+[┌──(slate700)\[Git: $git_branch$git_status\]$fill](slate700)$time[┐](slate700)
+[│](slate700)$directory
+[└──>](slate700)
+'''
 
+####################################### Prompt Configs ########################################
 # Wait 10 milliseconds for starship to check files under the current directory.
 scan_timeout = 10
 
 # Disable the blank line at the start of the prompt
 add_newline = false
 
-# Set 'foo' as custom color palette
+####################################### Custom Colours #######################################
+# Set 'foo' as custom colour palette
 palette = 'foo'
 
-# Define custom colors
 [palettes.foo]
-# Overwrite existing color
-blue = '21'
-# Define new color
-mustard = '#af8700'
+# Overwrite existing colour
+blue = '#2b7fff'
+red = '#e7000b'
+green = '#00c950'
+yellow = '#fcc800'
+# Define new colour
+slate700 = '#314158'
+
+########################################## Elements ##########################################
+[fill]
+symbol = '─'
+style = 'slate700'
+
+[time]
+disabled = false
+format = '[\[$time\]]($style)[──](slate700)'
+time_format = '%H:%M:%S'
+style = 'bold slate700'
+
+########################################## Git Tools #########################################
+[git_branch]
+format = '[$symbol$branch]($style)'
+symbol = '' # Clears the default  icon
+style = 'slate700'  # Clears default color/bolding
+
+[git_status]
+format = '( [| $all_status$ahead_behind]($style))'
+style = 'slate700'  # Clears default color/bolding
+
+# Combine them cleanly using Starship's native git module
+[git_state]
+disabled = true # Disables extra state text like REBASE/BISECT if you want it strictly minimal
