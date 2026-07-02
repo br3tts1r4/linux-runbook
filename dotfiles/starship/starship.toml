@@ -2,9 +2,9 @@
 
 ####################################### Prompt Style #########################################
 format = '''
-[┌──(slate700)\[Git: $git_branch$git_status\]$fill](slate700)$time[┐](slate700)
-[│](slate700)$directory
-[└──>](slate700)
+[┌──(slate400)$git_branch${custom.git_changes}$git_status$fill](slate400)$time[┐](slate400)
+[│](slate400)$directory
+[└──>](slate400)
 '''
 
 ####################################### Prompt Configs ########################################
@@ -25,29 +25,43 @@ red = '#e7000b'
 green = '#00c950'
 yellow = '#fcc800'
 # Define new colour
-slate700 = '#314158'
+slate400 = '#90a1b9'
 
 ########################################## Elements ##########################################
 [fill]
 symbol = '─'
-style = 'slate700'
+style = 'slate400'
 
 [time]
 disabled = false
-format = '[\[$time\]]($style)[──](slate700)'
+format = '[\[$time\]]($style)[──](slate400)'
 time_format = '%H:%M:%S'
-style = 'bold slate700'
+style = 'bold slate400'
 
 ########################################## Git Tools #########################################
 [git_branch]
-format = '[$symbol$branch]($style)'
-symbol = '' # Clears the default  icon
-style = 'slate700'  # Clears default color/bolding
+# Fixed the broken bracket: Opening [Git: and closing with ]
+format = '[$symbol$branch](slate400)'
+symbol = '\[Git:'
+disabled = false
 
 [git_status]
-format = '( [| $all_status$ahead_behind]($style))'
-style = 'slate700'  # Clears default color/bolding
+format = '[$ahead_behind](slate400)'
+disabled = false
+up_to_date = ''
+
+# This custom module counts EVERY local change and groups them into one single number
+[custom.git_changes]
+command = """
+changes=$(git status --porcelain 2>/dev/null | wc -l | xargs)
+if [ "$changes" -ne 0 ]; then
+    echo "${changes}"
+fi
+"""
+when = "git rev-parse --is-inside-work-tree 2>/dev/null"
+style = "slate400"
+format = "[ +$output\\]]($style)"
 
 # Combine them cleanly using Starship's native git module
 [git_state]
-disabled = true # Disables extra state text like REBASE/BISECT if you want it strictly minimal
+disabled = true
