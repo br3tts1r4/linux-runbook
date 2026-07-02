@@ -1,79 +1,23 @@
-"$schema" = 'https://starship.rs/config-schema.json'
+# ~/.config/starship.toml
 
-format = """
-$os\
-$directory\
-$git_branch\
-$git_status\
-$python\
-$nodejs\
-$rust\
-$golang\
-$cmd_duration\
-$line_break\
-$character"""
+# Use custom format
+format = '''
+[┌───────────────────>](bold green)
+[│](bold green)$directory$rust$package
+[└─>](bold green) '''
 
-add_newline = true
+# Wait 10 milliseconds for starship to check files under the current directory.
+scan_timeout = 10
 
-[os]
-disabled = false
-style = "fg:244"
+# Disable the blank line at the start of the prompt
+add_newline = false
 
-[os.symbols]
-Arch = "arch "
-Linux = "linux "
+# Set 'foo' as custom color palette
+palette = 'foo'
 
-[directory]
-style = "fg:39"
-truncation_length = 3
-truncate_to_repo = true
-read_only = " ro"
-
-[character]
-success_symbol = "[>](fg:42)"
-error_symbol = "[>](fg:196)"
-vimcmd_symbol = "[<](fg:42)"
-
-[git_branch]
-symbol = "on "
-style = "fg:208"
-format = '[$symbol$branch]($style) '
-
-[git_status]
-style = "fg:203"
-format = '([$all_status$ahead_behind]($style) )'
-conflicted = "~"
-ahead = "^${count}"
-behind = "v${count}"
-diverged = "^${ahead_count}v${behind_count}"
-untracked = "?${count}"
-stashed = "*${count}"
-modified = "!${count}"
-staged = "+${count}"
-renamed = "r${count}"
-deleted = "x${count}"
-
-[cmd_duration]
-min_time = 500
-style = "fg:241"
-format = '[took $duration]($style) '
-
-[python]
-symbol = "py "
-style = "fg:220"
-format = '[$symbol($version )(\($virtualenv\) )]($style)'
-
-[nodejs]
-symbol = "node "
-style = "fg:70"
-format = '[$symbol($version )]($style)'
-
-[rust]
-symbol = "rs "
-style = "fg:166"
-format = '[$symbol($version )]($style)'
-
-[golang]
-symbol = "go "
-style = "fg:74"
-format = '[$symbol($version )]($style)'
+# Define custom colors
+[palettes.foo]
+# Overwrite existing color
+blue = '21'
+# Define new color
+mustard = '#af8700'
