@@ -2,7 +2,7 @@
 
 ####################################### Prompt Style #########################################
 format = '''
-[┌──(slate400)$git_branch${custom.git_changes}$git_status$fill](slate400)$time[┐](slate400)
+[┌──(slate400)$git_branch${custom.git_changes}$fill](slate400)$time[┐](slate400)
 [│](slate400)$directory
 [└──>](slate400)
 '''
@@ -24,10 +24,27 @@ blue = '#2b7fff'
 red = '#e7000b'
 green = '#00c950'
 yellow = '#fcc800'
+indigo = '#615fff'
 # Define new colour
+blue800 = '#1447e6'
 slate400 = '#90a1b9'
 
 ########################################## Elements ##########################################
+[directory]
+style = "bold indigo"
+repo_root_style = "bold indigo" # Keeping it consistently blue across repository roots
+
+# Keeps the full path visible by extending the threshold to 99 directories deep
+truncation_length = 99
+truncate_to_repo = false
+
+# Visual configuration for read-only directories
+read_only = " 🔒"
+read_only_style = "red"
+
+# Clean format layout
+format = "[$path]($style)[$read_only]($read_only_style) "
+
 [fill]
 symbol = '─'
 style = 'slate400'
@@ -45,23 +62,16 @@ format = '[$symbol$branch](slate400)'
 symbol = '\[Git:'
 disabled = false
 
-[git_status]
-format = '[$ahead_behind](slate400)'
-disabled = false
-up_to_date = ''
-
-# This custom module counts EVERY local change and groups them into one single number
+# Counts all local changes and groups them into one single number
 [custom.git_changes]
 command = """
 changes=$(git status --porcelain 2>/dev/null | wc -l | xargs)
-if [ "$changes" -ne 0 ]; then
-    echo "${changes}"
+if [ -n "$changes" ] && [ "$changes" -ne 0 ]; then
+    # Print the + sign here dynamically only if changes exist
+    echo -e "(+$changes)"
 fi
 """
 when = "git rev-parse --is-inside-work-tree 2>/dev/null"
 style = "slate400"
-format = "[ +$output\\]]($style)"
-
-# Combine them cleanly using Starship's native git module
-[git_state]
-disabled = true
+format = "[$output\\]]($style)"
+disabled = false
