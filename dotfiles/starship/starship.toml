@@ -2,9 +2,9 @@
 
 ####################################### Prompt Style #########################################
 format = '''
-[┌──(slate400)$git_branch${custom.git_changes}$fill](slate400)$time[┐](slate400)
+[┌──(slate400)$git_branch${custom.git_changes}$fill](slate400)$time[──](slate400)
 [│](slate400)$directory
-[└──>](slate400)
+[└──$status](slate400)
 '''
 
 ####################################### Prompt Configs ########################################
@@ -12,7 +12,7 @@ format = '''
 scan_timeout = 10
 
 # Disable the blank line at the start of the prompt
-add_newline = false
+add_newline = true
 
 ####################################### Custom Colours #######################################
 # Set 'foo' as custom colour palette
@@ -28,11 +28,12 @@ indigo = '#615fff'
 # Define new colour
 blue800 = '#1447e6'
 slate400 = '#90a1b9'
+rose400 = '#d6867d'
 
 ########################################## Elements ##########################################
 [directory]
 style = "bold indigo"
-repo_root_style = "bold indigo" # Keeping it consistently blue across repository roots
+repo_root_style = "bold indigo"
 
 # Keeps the full path visible by extending the threshold to 99 directories deep
 truncation_length = 99
@@ -53,7 +54,7 @@ style = 'slate400'
 disabled = false
 format = '[\[$time\]]($style)[──](slate400)'
 time_format = '%H:%M:%S'
-style = 'bold slate400'
+style = 'slate400'
 
 ########################################## Git Tools #########################################
 [git_branch]
@@ -75,3 +76,9 @@ when = "git rev-parse --is-inside-work-tree 2>/dev/null"
 style = "slate400"
 format = "[$output\\]]($style)"
 disabled = false
+
+[status]
+disabled = false
+success_symbol = "[▶](bold slate400)"
+symbol = "[▶](bold rose400)"
+format = "[$symbol]($style)"
