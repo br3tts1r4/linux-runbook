@@ -1,6 +1,12 @@
 ---------------
 ---- LAYOUTS ----
 ---------------
+-- See https://wiki.hypr.land/Configuring/Layouts/ for more
+hl.config({
+    general = {
+        layout = "dwindle"
+    },
+})
 
 -- See https://wiki.hypr.land/Configuring/Layouts/Dwindle-Layout/ for more
 hl.config({
