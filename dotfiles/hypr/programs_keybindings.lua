@@ -35,8 +35,9 @@ hl.bind(mainMod .. " + I", hl.dsp.layout("togglesplit"))
 local closeWindowBind = hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.window.close())
 -- Tile Full Screen
 -- Fullscreen (0: true fullscreen, 1: maximize keeping status bars/gaps visible)
-hl.bind(mainMod .. " + SHIFT + F", hl.dsp.fullscreen(0))
-hl.bind(mainMod .. " + F", hl.dsp.fullscreen(1))
+hl.bind(mainMod .. " + SHIFT + F", hl.dsp.exec_cmd("fullscreen, 0"))
+hl.bind(mainMod .. " + F", hl.dsp.exec_cmd("fullscreen, 1"))
+
 -- Tile Switching Default
 -- hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))
 -- hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
