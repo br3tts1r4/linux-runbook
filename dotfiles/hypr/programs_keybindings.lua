@@ -26,8 +26,10 @@ hl.bind(mainMod .. " + space", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + O", hl.dsp.exec_cmd(fileManager))
 
 -- Tile Cycle Selection (next&prev)
-hl.bind(mainMod .. " + Tab", hl.dsp.exec_cmd("cyclenext"))
-hl.bind(mainMod .. " + SHIFT + Tab", hl.dsp.exec_cmd("cyclenext, prev"))
+-- hl.bind(mainMod .. " + Tab", hl.dsp.exec_cmd("cyclenext"))
+-- hl.bind(mainMod .. " + SHIFT + Tab", hl.dsp.exec_cmd("cyclenext, prev"))
+hl.bind(mainMod .. " + Tab", hl.dsp.exec_cmd("movefocus, r"))
+hl.bind(mainMod .. " + SHIFT + Tab", hl.dsp.exec_cmd("movefocus, l"))
 -- Tile Float
 hl.bind(mainMod .. " + Q", hl.dsp.window.float({ action = "toggle" }))
 -- Tile Minimise
