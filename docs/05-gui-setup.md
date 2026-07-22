@@ -204,6 +204,22 @@ sudo pacman -S wl-clipboard
 sudo pacman -S firefox obsidian
 ```
 
+## Setup Login GUI (Optional)
+
+### Install & enable service
+```sh
+sudo pacman -S sddm
+sudo systemctl enable sddm.service
+```
+
+### Enable Wayland support for SDDM
+Editing or creating `/etc/sddm.conf.d/wayland.conf`
+```
+[General]
+DisplayServer=wayland
+```
+Reboot after finish `sudo reboot`
+
 ---
 
 Back: [Prompt setup](./04-prompt-setup.md) | Next: [GUI customisation](./06-gui-customisation.md)
