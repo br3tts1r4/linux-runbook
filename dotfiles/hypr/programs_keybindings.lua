@@ -26,10 +26,8 @@ hl.bind(mainMod .. " + space", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + O", hl.dsp.exec_cmd(fileManager))
 
 -- Tile Cycle Selection (next&prev)
--- hl.bind(mainMod .. " + Tab", hl.dsp.exec_cmd("cyclenext"))
--- hl.bind(mainMod .. " + SHIFT + Tab", hl.dsp.exec_cmd("cyclenext, prev"))
-hl.bind(mainMod .. " + Tab", hl.dsp.exec_cmd("movefocus, r"))
-hl.bind(mainMod .. " + SHIFT + Tab", hl.dsp.exec_cmd("movefocus, l"))
+hl.bind(mainMod .. " + Tab", hl.dsp.focus({ direction = "r" }))
+hl.bind(mainMod .. " + SHIFT + Tab", hl.dsp.focus({ direction = "l" }))
 -- Tile Float
 hl.bind(mainMod .. " + Q", hl.dsp.window.float({ action = "toggle" }))
 -- Tile Minimise
@@ -40,8 +38,8 @@ hl.bind(mainMod .. " + I", hl.dsp.layout("togglesplit"))
 local closeWindowBind = hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.window.close())
 -- Tile Full Screen
 -- Fullscreen (0: true fullscreen, 1: maximize keeping status bars/gaps visible)
-hl.bind(mainMod .. " + SHIFT + F", hl.dsp.exec_cmd("fullscreen, 0"))
-hl.bind(mainMod .. " + F", hl.dsp.exec_cmd("fullscreen, 1"))
+hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = "fullscreen" }))
+hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen({ mode = "maximized" }))
 
 -- Tile Switching Default
 -- hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))
