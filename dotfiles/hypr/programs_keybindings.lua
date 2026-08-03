@@ -5,7 +5,8 @@
 -- Set programs that you use
 local terminal    = "kitty"
 local fileManager = "dolphin"
-local menu        = "hyprlauncher"
+local menu        = "rofi -show drun -show-icons"
+-- local menu        = "hyprlauncher" -- Default launcher
 
 ---------------------
 ---- KEYBINDINGS ----
@@ -34,7 +35,7 @@ hl.bind(mainMod .. " + Q", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + Z", hl.dsp.window.pseudo())
 -- Tile Split (only dwindle)
 hl.bind(mainMod .. " + I", hl.dsp.layout("togglesplit"))
--- Tile Close 
+-- Tile Close
 local closeWindowBind = hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.window.close())
 -- Tile Full Screen
 -- Fullscreen (0: true fullscreen, 1: maximize keeping status bars/gaps visible)

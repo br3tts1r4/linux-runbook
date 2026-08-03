@@ -184,6 +184,12 @@ sudo pacman -S mako
 sudo pacman -S waybar
 ```
 
+### File manager
+
+```sh
+sudo pacman -S dolphin
+```
+
 ## Install desktop applications
 
 ### Terminal emulator

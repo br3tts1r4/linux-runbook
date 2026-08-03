@@ -10,7 +10,7 @@
 -- require("myColors")
 
 -------------------
----- Dependencies ----
+---- Hyprland confs ----
 -------------------
 require("env")
 require("autostart")
@@ -23,3 +23,7 @@ require("styles")
 require("style-animations")
 require("layouts")
 require("miscs")
+
+-------------------
+---- Dependencies ----
+-------------------
