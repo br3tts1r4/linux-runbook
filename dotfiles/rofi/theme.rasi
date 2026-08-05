@@ -15,12 +15,17 @@ configuration {
     window-format:        "{w} · {c} · {t}";
 }
 
-/* Partials */
-@import "shared/colors.rasi"
-@import "shared/fonts.rasi"
-
-/* Semantic colour aliases */
+/* Palette, font, and colour aliases */
 * {
+    background:     #1E2127FF;
+    background-alt: #282B31FF;
+    foreground:     #FFFFFFFF;
+    selected:       #61AFEFFF;
+    active:         #98C379FF;
+    urgent:         #E06C75FF;
+
+    font: "Iosevka Nerd Font 10";
+
     border-colour:               var(selected);
     handle-colour:               var(selected);
     background-colour:           var(background);
