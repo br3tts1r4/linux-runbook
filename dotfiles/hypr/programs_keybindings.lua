@@ -32,15 +32,8 @@ hl.bind(mainMod .. " + O", hl.dsp.exec_cmd(fileManager))
 -- Tile Cycle Selection (next&prev)
 hl.bind(mainMod .. " + Tab", hl.dsp.focus({ direction = "r" }))
 hl.bind(mainMod .. " + SHIFT + Tab", hl.dsp.focus({ direction = "l" }))
--- Tile Float (100% of monitor when floated)
-hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd([=[
-bash -c '
-  hyprctl dispatch togglefloating
-  if hyprctl activewindow -j | grep -q "\"floating\": true"; then
-    hyprctl --batch "dispatch resizeactive exact 100% 100%; dispatch centerwindow"
-  fi
-'
-]=]))
+-- Tile Float 
+hl.bind(mainMod .. " + Q", hl.dsp.window.float({ action = "toggle" }))
 -- Tile Minimise
 hl.bind(mainMod .. " + Z", hl.dsp.window.pseudo())
 -- Tile Split (only dwindle)
