@@ -8,7 +8,7 @@ local rofi_config = os.getenv("HOME") .. "/.config/rofi/config.rasi"
 -- Set programs that you use
 local terminal    = "kitty"
 local fileManager = "dolphin"
-local menu        = "rofi -show drun -show-icons -config " .. rofi_config
+local menu        = "rofi -config " .. rofi_config .. " -show drun -show-icons"
 -- local menu        = "hyprlauncher" -- Default launcher
 
 ---------------------
