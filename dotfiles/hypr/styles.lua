@@ -63,11 +63,11 @@ hl.config({
       { name = "workspace",  args = { 0.3, 0.8, 0.1, 1.0 } },
     },
     animation = {
-      { name = "windows",     enabled = 1, speed = 4, curve = "md3_decel" },
-      { name = "windowsOut",  enabled = 1, speed = 3, curve = "md3_decel" },
-      { name = "border",      enabled = 1, speed = 10, curve = "default" },
-      { name = "fade",        enabled = 1, speed = 4, curve = "default" },
-      { name = "workspaces",  enabled = 1, speed = 5, curve = "workspace", style = "slide" },
+      { name = "windows",     enabled = 1, speed = 6,   curve = "md3_decel" },
+      { name = "windowsOut",  enabled = 1, speed = 4.5, curve = "md3_decel" },
+      { name = "border",      enabled = 1, speed = 15,  curve = "default" },
+      { name = "fade",        enabled = 1, speed = 6,   curve = "default" },
+      { name = "workspaces",  enabled = 1, speed = 7.5, curve = "workspace", style = "slide" },
     },
   },
 })
