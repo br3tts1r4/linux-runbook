@@ -1,0 +1,155 @@
+// Waybar — floating island bar for Hyprland
+// Reference https://github.com/Alexays/Waybar/wiki/Configuration
+// Labels are plain text so the bar renders without a Nerd Font installed.
+{
+  "layer": "top",
+  "position": "top",
+  "height": 36,
+  "spacing": 0,
+  "margin-top": 6,
+  "margin-left": 8,
+  "margin-right": 8,
+  "reload_style_on_change": true,
+
+  "modules-left": [
+    "hyprland/workspaces",
+    "hyprland/submap"
+  ],
+  "modules-center": [
+    "hyprland/window"
+  ],
+  "modules-right": [
+    "tray",
+    "idle_inhibitor",
+    "cpu",
+    "memory",
+    "backlight",
+    "pulseaudio",
+    "network",
+    "battery",
+    "clock",
+    "custom/power"
+  ],
+
+  "hyprland/workspaces": {
+    "format": "{name}",
+    "on-click": "activate",
+    "sort-by-number": true,
+    "persistent-workspaces": {
+      "*": 5
+    }
+  },
+
+  "hyprland/submap": {
+    "format": "{}",
+    "tooltip": false
+  },
+
+  "hyprland/window": {
+    "format": "{title}",
+    "max-length": 60,
+    "separate-outputs": true,
+    "rewrite": {
+      "": "Desktop"
+    }
+  },
+
+  "tray": {
+    "icon-size": 16,
+    "spacing": 10
+  },
+
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "awake",
+      "deactivated": "idle"
+    },
+    "tooltip-format-activated": "Sleep blocked",
+    "tooltip-format-deactivated": "Sleep allowed"
+  },
+
+  "cpu": {
+    "interval": 3,
+    "format": "cpu {usage}%",
+    "tooltip": true,
+    "on-click": "kitty -e htop"
+  },
+
+  "memory": {
+    "interval": 5,
+    "format": "ram {percentage}%",
+    "tooltip-format": "{used:0.1f}G / {total:0.1f}G"
+  },
+
+  // Requires brightnessctl (same tool as the Hyprland brightness keybinds)
+  "backlight": {
+    "format": "bri {percent}%",
+    "on-scroll-up": "brightnessctl -e4 -n2 set 5%+",
+    "on-scroll-down": "brightnessctl -e4 -n2 set 5%-",
+    "tooltip": false
+  },
+
+  // PipeWire via pipewire-pulse; mute toggle uses wpctl like the keybinds
+  "pulseaudio": {
+    "format": "vol {volume}%",
+    "format-muted": "vol muted",
+    "format-source": "mic {volume}%",
+    "format-source-muted": "mic muted",
+    "scroll-step": 5,
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "tooltip-format": "{desc}"
+  },
+
+  "network": {
+    "interval": 5,
+    "format-wifi": "wifi {signalStrength}%",
+    "format-ethernet": "lan",
+    "format-linked": "lan (no ip)",
+    "format-disconnected": "offline",
+    "tooltip-format-wifi": "{essid}\n{ipaddr}/{cidr}",
+    "tooltip-format-ethernet": "{ifname}\n{ipaddr}/{cidr}",
+    "tooltip-format-disconnected": "No connection",
+    "on-click": "kitty --class nmtui -e nmtui"
+  },
+
+  "battery": {
+    "interval": 10,
+    "states": {
+      "warning": 25,
+      "critical": 10
+    },
+    "format": "bat {capacity}%",
+    "format-charging": "chr {capacity}%",
+    "format-plugged": "ac {capacity}%",
+    "format-full": "full",
+    "tooltip-format": "{timeTo} ({power:0.1f}W)"
+  },
+
+  "clock": {
+    "interval": 1,
+    "format": "{:%a %d %b  %H:%M}",
+    "format-alt": "{:%H:%M:%S}",
+    "tooltip-format": "<tt>{calendar}</tt>",
+    "calendar": {
+      "mode": "month",
+      "on-scroll": 1,
+      "format": {
+        "months": "<span color='#cdd6f4'><b>{}</b></span>",
+        "days": "<span color='#bac2de'>{}</span>",
+        "weekdays": "<span color='#89b4fa'><b>{}</b></span>",
+        "today": "<span color='#f38ba8'><b>{}</b></span>"
+      }
+    },
+    "actions": {
+      "on-click-right": "mode"
+    }
+  },
+
+  // Same shutdown path as SUPER + SHIFT + Delete in hypr/programs_keybindings.lua
+  "custom/power": {
+    "format": "power",
+    "tooltip-format": "Exit Hyprland",
+    "on-click": "command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit"
+  }
+}

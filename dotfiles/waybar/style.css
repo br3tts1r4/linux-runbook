@@ -1,0 +1,213 @@
+/* Waybar styles — GTK3 CSS (no variables, use @define-color from colors.css) */
+
+@import url("colors.css");
+
+/* Base reset */
+* {
+  font-family: "Adwaita Sans", "DejaVu Sans", "FreeSans", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  min-height: 0;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+}
+
+/* Transparent bar so only the islands are visible */
+window#waybar {
+  background-color: transparent;
+  color: @text;
+}
+
+window#waybar.hidden {
+  opacity: 0.0;
+}
+
+/* Islands */
+.modules-left,
+.modules-center,
+.modules-right {
+  background-color: @island;
+  border: 1px solid @hairline;
+  border-radius: 14px;
+  padding: 0 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* Shared module spacing */
+#workspaces,
+#submap,
+#window,
+#tray,
+#idle_inhibitor,
+#cpu,
+#memory,
+#backlight,
+#pulseaudio,
+#network,
+#battery,
+#clock,
+#custom-power {
+  padding: 0 9px;
+  margin: 3px 1px;
+  border-radius: 10px;
+  color: @subtext1;
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+#workspaces {
+  padding: 0 2px;
+}
+
+#workspaces button {
+  padding: 0 8px;
+  margin: 3px 2px;
+  border-radius: 9px;
+  color: @overlay0;
+  background-color: transparent;
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+#workspaces button:hover {
+  background-color: @hover;
+  color: @text;
+}
+
+#workspaces button.visible {
+  color: @subtext0;
+}
+
+#workspaces button.active {
+  padding: 0 14px;
+  color: @base;
+  background-color: @blue;
+}
+
+#workspaces button.urgent {
+  color: @base;
+  background-color: @red;
+}
+
+/* Hyprland submap indicator (empty when no submap is active) */
+#submap {
+  color: @peach;
+  font-weight: 700;
+}
+
+#window {
+  color: @text;
+  font-weight: 400;
+}
+
+/* Right-side accents */
+#idle_inhibitor {
+  color: @overlay0;
+}
+
+#idle_inhibitor.activated {
+  color: @yellow;
+}
+
+#cpu {
+  color: @sapphire;
+}
+
+#memory {
+  color: @lavender;
+}
+
+#backlight {
+  color: @yellow;
+}
+
+#pulseaudio {
+  color: @teal;
+}
+
+#pulseaudio.muted {
+  color: @overlay0;
+}
+
+#network {
+  color: @green;
+}
+
+#network.disconnected,
+#network.disabled {
+  color: @red;
+}
+
+#battery {
+  color: @green;
+}
+
+#battery.charging,
+#battery.plugged {
+  color: @teal;
+}
+
+#battery.warning:not(.charging) {
+  color: @peach;
+}
+
+#battery.critical:not(.charging) {
+  color: @base;
+  background-color: @red;
+}
+
+#clock {
+  color: @text;
+  font-weight: 600;
+}
+
+#custom-power {
+  color: @red;
+}
+
+#custom-power:hover {
+  color: @base;
+  background-color: @red;
+}
+
+#tray {
+  padding: 0 6px;
+}
+
+#tray menu {
+  background-color: @mantle;
+  color: @text;
+  border: 1px solid @hairline;
+  border-radius: 10px;
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+}
+
+/* Hover feedback for interactive modules */
+#cpu:hover,
+#memory:hover,
+#backlight:hover,
+#pulseaudio:hover,
+#network:hover,
+#battery:hover,
+#clock:hover,
+#idle_inhibitor:hover {
+  background-color: @hover;
+}
+
+tooltip {
+  background-color: @mantle;
+  border: 1px solid @hairline;
+  border-radius: 10px;
+}
+
+tooltip label {
+  color: @text;
+  padding: 4px;
+}
