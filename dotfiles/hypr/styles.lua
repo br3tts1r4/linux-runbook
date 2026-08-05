@@ -5,8 +5,8 @@
 -- Refer to https://wiki.hypr.land/Configuring/Variables/
 hl.config({
   general = {
-    gaps_in          = 6,
-    gaps_out         = 12,
+    gaps_in          = 3,
+    gaps_out         = 6,
 
     border_size      = 1,
 
@@ -17,7 +17,7 @@ hl.config({
     },
 
     -- Enable border drag for easier floating window management
-    resize_on_border = true,
+    resize_on_border = false,
     allow_tearing    = false,
 
     layout           = "dwindle",
