@@ -14,6 +14,12 @@ configuration {
     display-window:       "Windows";
     drun-display-format:  "{name}";
     window-format:        "{w} · {c} · {t}";
+
+    /* Vim-style list nav (Ctrl — Super is grabbed by Hyprland) */
+    kb-row-down:          "Down,Control+n,Control+j";
+    kb-row-up:            "Up,Control+p,Control+k";
+    /* Control+j defaults to accept; keep Enter / Ctrl+m */
+    kb-accept-entry:      "Return,KP_Enter,Control+m";
 }
 
 /* Palette and colour aliases (One Dark) */
