@@ -18,7 +18,7 @@ configuration {
 
 /* Palette and colour aliases (One Dark) */
 * {
-    background:     #1E2127FF;
+    background:     #1E2127CC;
     background-alt: #282B31FF;
     foreground:     #FFFFFFFF;
     selected:       #61AFEFFF;
@@ -56,7 +56,7 @@ window {
     location:         center;
     anchor:           center;
     fullscreen:       false;
-    width:            400px;
+    width:            600px;
     x-offset:         0px;
     y-offset:         0px;
     enabled:          true;
