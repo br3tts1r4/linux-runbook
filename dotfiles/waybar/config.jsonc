@@ -25,7 +25,7 @@
     "cpu",
     "memory",
     "backlight",
-    "pulseaudio",
+    "group/volume",
     "network",
     "battery",
     "custom/power"
@@ -90,15 +90,40 @@
     "tooltip": false
   },
 
-  // PipeWire via pipewire-pulse; mute toggle uses wpctl like the keybinds
+  // Speaker volume: [-] readout [+]. All actions drive the default stereo sink
+  // through wpctl (wireplumber), matching the XF86Audio keybinds in hypr/.
+  "group/volume": {
+    "orientation": "horizontal",
+    "modules": [
+      "custom/volume-down",
+      "pulseaudio",
+      "custom/volume-up"
+    ]
+  },
+
+  "custom/volume-down": {
+    "format": "-",
+    "tooltip": false,
+    "on-click": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+  },
+
+  // Raising also unmutes, so the + button always produces sound
+  "custom/volume-up": {
+    "format": "+",
+    "tooltip": false,
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ 0 && wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
+  },
+
   "pulseaudio": {
     "format": "vol {volume}%",
     "format-muted": "vol muted",
     "format-source": "mic {volume}%",
     "format-source-muted": "mic muted",
     "scroll-step": 5,
+    "max-volume": 100,
     "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-    "tooltip-format": "{desc}"
+    "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+    "tooltip-format": "{desc}\nClick mute speaker / right-click mute mic"
   },
 
   "network": {

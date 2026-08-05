@@ -121,12 +121,41 @@ window#waybar.hidden {
   color: @yellow;
 }
 
-#pulseaudio {
+/* Volume group renders as one unit: [-] vol 40% [+] */
+#volume {
+  margin: 3px 1px;
+  border-radius: 10px;
+  background-color: rgba(148, 226, 213, 0.06);
+}
+
+#custom-volume-down,
+#custom-volume-up {
+  padding: 0 8px;
+  border-radius: 10px;
+  color: @overlay0;
+  font-weight: 700;
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+#custom-volume-down:hover,
+#custom-volume-up:hover {
+  background-color: @hover;
   color: @teal;
 }
 
-#pulseaudio.muted {
+#pulseaudio {
+  color: @teal;
+  margin: 0;
+  padding: 0 6px;
+}
+
+#pulseaudio.muted,
+#pulseaudio.sink-muted {
   color: @overlay0;
+}
+
+#pulseaudio.source-muted {
+  color: @peach;
 }
 
 #network {
