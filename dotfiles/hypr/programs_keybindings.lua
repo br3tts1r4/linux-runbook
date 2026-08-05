@@ -3,7 +3,7 @@
 ---------------------
 
 -- Set path config
-local rofi_config = os.getenv("HOME") .. "/.config/rofi/config.rasi"
+local rofi_config = os.getenv("HOME") .. "/.config/rofi/theme.rasi"
 
 -- Set programs that you use
 local terminal    = "kitty"
