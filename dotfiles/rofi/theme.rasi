@@ -15,6 +15,9 @@ configuration {
     drun-display-format:  "{name}";
     window-format:        "{w} · {c} · {t}";
 
+    /* Vim-style list nav */
+    kb-row-down:          "Down,Control+n,Alt+j";
+    kb-row-up:            "Up,Control+p,Alt+k";
 }
 
 /* Palette and colour aliases (One Dark) */
