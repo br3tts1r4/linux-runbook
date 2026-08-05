@@ -1,34 +1,44 @@
 ####################################################
-# Lazygit Configuration File for Catppuccin Theme  #
-# https://github.com/catppuccin/lazygit/           #
+# Lazygit Configuration File for Rose Pine Theme   #
+# https://github.com/rose-pine/lazygit             #
 ####################################################
 gui:
   theme:
     activeBorderColor:
-      - '#ea999c'
+      - "#286983"
       - bold
-    inactiveBorderColor:
-      - '#a5adce'
-    searchingActiveBorderColor:
-      - '#e5c890'
-    optionsTextColor:
-      - '#8caaee'
-    selectedLineBgColor:
-      - '#414559'
-    inactiveViewSelectedLineBgColor:
-      - '#737994'
-    cherryPickedCommitFgColor:
-      - '#ea999c'
-    cherryPickedCommitBgColor:
-      - '#51576d'
-    markedBaseCommitFgColor:
-      - '#8caaee'
-    markedBaseCommitBgColor:
-      - '#e5c890'
-    unstagedChangesColor:
-      - '#e78284'
-    defaultFgColor:
-      - '#c6d0f5'
 
-  authorColors:
-    '*': '#babbf1'
+    inactiveBorderColor:
+      - "#9893a5"
+
+    searchingActiveBorderColor:
+      - "#d7827e"
+      - bold
+
+    optionsTextColor:
+      - "#56949f"
+
+    selectedLineBgColor:
+      - "#286983"
+
+    inactiveViewSelectedLineBgColor:
+      - "#f2e9e1"
+      - bold
+
+    cherryPickedCommitFgColor:
+      - "#fffaf3"
+
+    cherryPickedCommitBgColor:
+      - "#d7827e"
+
+    markedBaseCommitFgColor:
+      - "#56949f"
+
+    markedBaseCommitBgColor:
+      - "#ea9d34"
+
+    unstagedChangesColor:
+      - "#b4637a"
+
+    defaultFgColor:
+      - "#575279"
