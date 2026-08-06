@@ -17,3 +17,7 @@ lazygit
 acpi
 fzf
 wl-clipboard
+networkmanager
+firewalld
+iptables-nft
+
