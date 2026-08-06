@@ -21,6 +21,7 @@ Follow in order from USB prep through desktop setup.
 | 04 | [Prompt setup](docs/04-prompt-setup.md) | Shell prompt and tooling |
 | 05 | [GUI setup](docs/05-gui-setup.md) | Drivers, Hyprland, desktop packages |
 | 06 | [GUI customisation](docs/06-gui-customisation.md) | Themes and appearance |
+| 07 | [Security](docs/07-security.md) | Firewalld, SELinux |
 
 ### Reference
 
@@ -32,6 +33,7 @@ Background notes linked from the runbooks.
 | [`mkinitcpio.conf`](docs/reference/etc-mkinitcpio-conf.md) | Initramfs configuration |
 | [Pacman](docs/reference/pacman-cheatsheet.md) | Package manager commands |
 | [Systemd default TTY](docs/reference/etc-systemd-change-boot-tty.md) | Switch boot TTY to kmscon (tty2) |
+| [SSH command cheatsheet](docs/reference/ssh-cmd.md) | Connecting, key management |
 
 ### Dotfiles
 
