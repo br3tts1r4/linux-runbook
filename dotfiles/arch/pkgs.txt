@@ -45,3 +45,4 @@ playerctl
 firefox
 obsidian
 sddm
+atac
