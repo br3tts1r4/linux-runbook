@@ -1,67 +1,77 @@
 # ~/.config/starship.toml
+#
+# Two-line prompt. Palette matches the rest of the desktop
+# (dotfiles/waybar/colors.css, dotfiles/hypr/styles.lua).
+#
+#   ~/Workshop/me/linux-runbook master (+3)              2.4s · 14:22
+#   ❯
 
 ####################################### Prompt Style #########################################
-format = '''
-[┌──(slate400)$git_branch${custom.git_changes}$fill](slate400)$time[──](slate400)
-[│](slate400)$directory
-[└──$status](slate400)
-'''
+format = """
+$directory$git_branch${custom.git_changes} $fill$cmd_duration$time
+$character"""
 
-####################################### Prompt Configs ########################################
+####################################### Prompt Configs #######################################
 # Wait 10 milliseconds for starship to check files under the current directory.
 scan_timeout = 10
 
-# Disable the blank line at the start of the prompt
+# Blank line between prompts
 add_newline = true
 
 ####################################### Custom Colours #######################################
-# Set 'foo' as custom colour palette
-palette = 'foo'
+palette = 'mocha'
 
-[palettes.foo]
-# Overwrite existing colour
-blue = '#2b7fff'
-red = '#e7000b'
-green = '#00c950'
-yellow = '#fcc800'
-indigo = '#615fff'
-# Define new colour
-blue800 = '#1447e6'
-slate400 = '#90a1b9'
-rose400 = '#d6867d'
+[palettes.mocha]
+overlay  = '#6c7086'
+blue     = '#89b4fa'
+lavender = '#b4befe'
+mauve    = '#cba6f7'
+green    = '#a6e3a1'
+peach    = '#fab387'
+red      = '#f38ba8'
 
 ########################################## Elements ##########################################
 [directory]
-style = "bold indigo"
-repo_root_style = "bold indigo"
+style = "bold blue"
+repo_root_style = "bold lavender"
 
 # Keeps the full path visible by extending the threshold to 99 directories deep
 truncation_length = 99
 truncate_to_repo = false
 
-# Visual configuration for read-only directories
-read_only = " 🔒"
+read_only = " ro"
 read_only_style = "red"
 
-# Clean format layout
-format = "[$path]($style)[$read_only]($read_only_style) "
+format = "[$path]($style)[$read_only]($read_only_style)"
+# Same as the default but without its trailing space, so the branch spacing
+# is identical inside and outside a repo
+repo_root_format = "[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style)"
 
+# Invisible spacer that right-aligns the clock
 [fill]
-symbol = '─'
-style = 'slate400'
+symbol = ' '
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+vimcmd_symbol = "[❮](bold peach)"
+
+[cmd_duration]
+min_time = 2_000
+style = "overlay"
+format = "[$duration · ]($style)"
 
 [time]
 disabled = false
-format = '[\[$time\]]($style)[──](slate400)'
-time_format = '%H:%M:%S'
-style = 'slate400'
+style = "overlay"
+format = "[$time]($style)"
+time_format = '%H:%M'
 
 ########################################## Git Tools #########################################
 [git_branch]
-# Fixed the broken bracket: Opening [Git: and closing with ]
-format = '[$symbol$branch](slate400)'
-symbol = '\[Git:'
-disabled = false
+symbol = ""
+style = "mauve"
+format = "[ $symbol$branch]($style)"
 
 # Counts all local changes and groups them into one single number
 [custom.git_changes]
@@ -73,12 +83,20 @@ if [ -n "$changes" ] && [ "$changes" -ne 0 ]; then
 fi
 """
 when = "git rev-parse --is-inside-work-tree 2>/dev/null"
-style = "slate400"
-format = "[$output\\]]($style)"
+style = "peach"
+# Optional group so a clean tree renders nothing at all, not a stray space
+format = "[( $output)]($style)"
 disabled = false
 
-[status]
-disabled = false
-success_symbol = "[▶](bold slate400)"
-symbol = "[▶](bold rose400)"
-format = "[$symbol]($style)"
+######################################### Disabled ###########################################
+[package]
+disabled = true
+
+[docker_context]
+disabled = true
+
+[aws]
+disabled = true
+
+[gcloud]
+disabled = true
