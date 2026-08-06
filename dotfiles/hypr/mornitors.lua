@@ -19,8 +19,8 @@ hl.monitor({
 -- Matching on the description instead survives swapping ports, e.g.
 --   output = "desc:Dell Inc. DELL U3223QE"
 hl.monitor({
-  output   = "DP-1",
+  output   = "DP-2",
   mode     = "preferred",
   position = "auto",
-  scale    = "1.5"
+  scale    = "1.2"
 })
