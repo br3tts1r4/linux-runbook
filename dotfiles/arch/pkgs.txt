@@ -16,3 +16,4 @@ mise
 lazygit
 acpi
 fzf
+wl-clipboard
