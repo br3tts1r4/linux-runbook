@@ -90,40 +90,54 @@
     "tooltip": false
   },
 
-  // Speaker volume: [-] readout [+]. All actions drive the default stereo sink
-  // through wpctl (wireplumber), matching the XF86Audio keybinds in hypr/.
+  // Speaker volume. Collapsed it is just "vol"; clicking reveals a row of
+  // [mute toggle] [slider] [percentage]. The slider is Waybar's native GTK
+  // scale, so it is drag- and click-to-position, and it needs the sizing
+  // rules in style.css to render at all.
   "group/volume": {
     "orientation": "horizontal",
+    "drawer": {
+      "transition-duration": 300,
+      "children-class": "volume-child",
+      "transition-left-to-right": false,
+      "click-to-reveal": true
+    },
     "modules": [
-      "custom/volume-down",
+      "custom/volume",
       "pulseaudio",
-      "custom/volume-up"
+      "pulseaudio/slider",
+      "pulseaudio#percent"
     ]
   },
 
-  "custom/volume-down": {
-    "format": "-",
-    "tooltip": false,
-    "on-click": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+  // Group leader — always visible, click toggles the drawer
+  "custom/volume": {
+    "format": "vol",
+    "tooltip": false
   },
 
-  // Raising also unmutes, so the + button always produces sound
-  "custom/volume-up": {
-    "format": "+",
-    "tooltip": false,
-    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ 0 && wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
-  },
-
+  // Left section: mute / unmute toggle
   "pulseaudio": {
-    "format": "vol {volume}%",
-    "format-muted": "vol muted",
-    "format-source": "mic {volume}%",
-    "format-source-muted": "mic muted",
+    "format": "on",
+    "format-muted": "off",
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "tooltip-format": "{desc}\nClick to mute / unmute"
+  },
+
+  // Center section: draggable slider on the default stereo sink
+  "pulseaudio/slider": {
+    "min": 0,
+    "max": 100,
+    "orientation": "horizontal"
+  },
+
+  // Right section: live percentage readout
+  "pulseaudio#percent": {
+    "format": "{volume}%",
+    "format-muted": "{volume}%",
     "scroll-step": 5,
     "max-volume": 100,
-    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-    "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
-    "tooltip-format": "{desc}\nClick mute speaker / right-click mute mic"
+    "tooltip": false
   },
 
   "network": {

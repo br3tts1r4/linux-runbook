@@ -121,41 +121,84 @@ window#waybar.hidden {
   color: @yellow;
 }
 
-/* Volume group renders as one unit: [-] vol 40% [+] */
+/* Volume: "vol" leader, click reveals [mute] [slider] [percent] */
 #volume {
   margin: 3px 1px;
   border-radius: 10px;
-  background-color: rgba(148, 226, 213, 0.06);
 }
 
-#custom-volume-down,
-#custom-volume-up {
-  padding: 0 8px;
+#volume:hover {
+  background-color: rgba(148, 226, 213, 0.08);
+}
+
+#custom-volume {
+  padding: 0 9px;
   border-radius: 10px;
-  color: @overlay0;
-  font-weight: 700;
+  color: @teal;
+  font-weight: 600;
+}
+
+/* Revealed row sections */
+#volume .volume-child {
+  padding: 0 6px;
+}
+
+/* Left: mute toggle */
+#pulseaudio {
+  padding: 0 7px;
+  margin: 0;
+  border-radius: 8px;
+  color: @green;
   transition: background-color 200ms ease, color 200ms ease;
 }
 
-#custom-volume-down:hover,
-#custom-volume-up:hover {
+#pulseaudio:hover {
   background-color: @hover;
-  color: @teal;
-}
-
-#pulseaudio {
-  color: @teal;
-  margin: 0;
-  padding: 0 6px;
 }
 
 #pulseaudio.muted,
 #pulseaudio.sink-muted {
-  color: @overlay0;
+  color: @red;
 }
 
-#pulseaudio.source-muted {
-  color: @peach;
+/* Center: draggable slider. GTK sizes these nodes from CSS only —
+   without min-width/min-height on trough the slider will not render. */
+#pulseaudio-slider {
+  padding: 0 4px;
+  margin: 0;
+}
+
+#pulseaudio-slider trough {
+  min-width: 110px;
+  min-height: 6px;
+  border-radius: 3px;
+  background-color: @surface1;
+}
+
+#pulseaudio-slider highlight {
+  min-height: 6px;
+  border-radius: 3px;
+  background-color: @teal;
+}
+
+#pulseaudio-slider slider {
+  min-width: 12px;
+  min-height: 12px;
+  border-radius: 6px;
+  background-color: @text;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+/* Right: percentage readout */
+#pulseaudio.percent {
+  padding: 0 7px;
+  margin: 0;
+  color: @subtext1;
+  font-weight: 600;
+}
+
+#pulseaudio.percent:hover {
+  background-color: transparent;
 }
 
 #network {
