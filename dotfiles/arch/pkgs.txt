@@ -3,6 +3,7 @@ zsh
 tmux
 neovim
 gcc
+base-devel
 make
 openssl
 libyaml
@@ -46,3 +47,6 @@ firefox
 obsidian
 sddm
 atac
+zip
+unzip
+
