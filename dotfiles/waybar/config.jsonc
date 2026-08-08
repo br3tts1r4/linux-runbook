@@ -170,11 +170,7 @@
   "pulseaudio": {
     "format": "{icon}",
     "format-muted": "🔇",
-    "format-icons": {
-      "headphone": "🎧",
-      "headset": "🎧",
-      "default": ["🔈", "🔉", "🔊"]
-    },
+    "format-icons": ["🔈", "🔉", "🔊"],
     "scroll-step": 5,
     "max-volume": 100,
     "tooltip-format": "{desc}\n{volume}%"
@@ -250,10 +246,10 @@
     }
   },
 
-  // ✕ exits the session — same path as SUPER + SHIFT + Delete in
+  // ⏻ exits the session — same path as SUPER + SHIFT + Delete in
   // hypr/programs_keybindings.lua.
   "custom/power": {
-    "format": "✕",
+    "format": "⏻",
     "tooltip-format": "Exit Hyprland",
     "on-click": "command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit"
   }
