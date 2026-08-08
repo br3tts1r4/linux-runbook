@@ -162,21 +162,34 @@
   },
 
   // Group leader — plain text, so no font can fail to draw it, and no
-  // on-click* so the click reaches the drawer. Scrolling here changes the sink
-  // volume natively. The tooltip names the sink being controlled: if that is
-  // not the device you are listening through, Waybar is driving another output
-  // and the slider will seem to do nothing.
+  // on-click* so the click reaches the drawer. Every state keeps the word
+  // "vol" next to the percentage, including muted and Bluetooth sinks, which
+  // otherwise fall back to a format that drops the number.
+  // Scrolling steps the volume through wpctl rather than Waybar's own
+  // PulseAudio write path: wpctl always targets @DEFAULT_AUDIO_SINK@, whereas
+  // Waybar drives whichever sink it latched onto at startup. Defining
+  // on-scroll-* also makes Waybar skip its native scroll handling, so the step
+  // is applied once. -l 1 caps the raise at 100%.
   // Keep "<" out of any format string — Waybar renders labels as Pango markup,
   // so a stray "<" is parsed as a tag and blanks the label.
   "pulseaudio": {
     "format": "vol {volume}%",
-    "format-muted": "vol muted",
-    "scroll-step": 5,
+    "format-muted": "vol {volume}% muted",
+    "format-bluetooth": "vol {volume}%",
+    "format-bluetooth-muted": "vol {volume}% muted",
     "max-volume": 100,
-    "tooltip-format": "{desc}\n{volume}%"
+    "on-scroll-up": "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
+    "tooltip-format": "{desc}\nvol {volume}%"
   },
 
   // Revealed control: drag or click anywhere on the bar to set the volume.
+  // This is the one control that has to go through Waybar's own PulseAudio
+  // connection, so it writes to the sink Waybar latched onto rather than to
+  // @DEFAULT_AUDIO_SINK@. If the handle moves but nothing gets louder, those
+  // two are different sinks — compare the leader's tooltip against
+  // `wpctl status` and list the stray one in "ignored-sinks" on both this
+  // module and "pulseaudio" above.
   // zero-on-mute must stay false. With it on, a muted sink makes Waybar redraw
   // the slider at min on every backend event, so a drag snaps back instantly
   // and the control looks dead.
