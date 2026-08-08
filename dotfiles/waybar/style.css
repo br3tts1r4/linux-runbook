@@ -2,7 +2,9 @@
 
 @import url("colors.css");
 
-/* Base reset */
+/* Base reset. The font list is fallback order, and GTK resolves it per glyph,
+   so the Unicode icons in config.jsonc come from DejaVu/Noto if the UI font
+   lacks them. */
 * {
   font-family: "Adwaita Sans", "DejaVu Sans", "FreeSans", sans-serif;
   font-size: 13px;
@@ -35,7 +37,8 @@ window#waybar.hidden {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }
 
-/* Shared module spacing */
+/* Shared chrome for the stand-alone modules. Group leaders are excluded —
+   their group carries the outer margin instead (see the drawer section). */
 #workspaces,
 #submap,
 #window,
@@ -43,8 +46,6 @@ window#waybar.hidden {
 #idle_inhibitor,
 #cpu,
 #memory,
-#backlight,
-#pulseaudio,
 #network,
 #battery,
 #clock,
@@ -74,10 +75,12 @@ window#waybar.hidden {
   color: @text;
 }
 
+/* Open on another monitor */
 #workspaces button.visible {
   color: @subtext0;
 }
 
+/* Focused workspace — widened pill so it reads as the anchor of the bar */
 #workspaces button.active {
   padding: 0 14px;
   color: @base;
@@ -100,11 +103,13 @@ window#waybar.hidden {
   font-weight: 400;
 }
 
-/* Right-side accents */
+/* ── Right-side accents ─────────────────────────────────────────────── */
+
 #idle_inhibitor {
   color: @overlay0;
 }
 
+/* ◉ — sleep is being blocked */
 #idle_inhibitor.activated {
   color: @yellow;
 }
@@ -117,43 +122,49 @@ window#waybar.hidden {
   color: @lavender;
 }
 
+/* ── Slider drawers ─────────────────────────────────────────────────────
+   #brightness and #volume are the group boxes. Waybar adds .expanded while
+   the drawer is open, and tags every revealed child with the children-class
+   from config.jsonc. The leader keeps its own module id (#backlight,
+   #pulseaudio) and sits flush inside the group, so only the group has margin. */
+#brightness,
+#volume {
+  margin: 3px 1px;
+  border-radius: 10px;
+  transition: background-color 200ms ease;
+}
+
+#brightness:hover,
+#volume:hover {
+  background-color: @hover;
+}
+
+#brightness.expanded,
+#volume.expanded {
+  background-color: @surface0;
+}
+
+/* Breathing room around each revealed control */
+#brightness .brightness-child,
+#volume .volume-child {
+  padding: 0 4px;
+}
+
+/* Group leaders — the icons that are always visible and take the click */
+#backlight,
+#pulseaudio {
+  padding: 0 9px;
+  margin: 0;
+  border-radius: 10px;
+  transition: color 200ms ease;
+}
+
 #backlight {
   color: @yellow;
 }
 
-/* Volume: "vol" leader, click reveals [mute] [slider] [percent] */
-#volume {
-  margin: 3px 1px;
-  border-radius: 10px;
-}
-
-#volume:hover {
-  background-color: rgba(148, 226, 213, 0.08);
-}
-
-#custom-volume {
-  padding: 0 9px;
-  border-radius: 10px;
-  color: @teal;
-  font-weight: 600;
-}
-
-/* Revealed row sections */
-#volume .volume-child {
-  padding: 0 6px;
-}
-
-/* Left: mute toggle */
 #pulseaudio {
-  padding: 0 7px;
-  margin: 0;
-  border-radius: 8px;
-  color: @green;
-  transition: background-color 200ms ease, color 200ms ease;
-}
-
-#pulseaudio:hover {
-  background-color: @hover;
+  color: @teal;
 }
 
 #pulseaudio.muted,
@@ -161,18 +172,27 @@ window#waybar.hidden {
   color: @red;
 }
 
-/* Center: draggable slider. GTK sizes these nodes from CSS only —
-   without min-width/min-height on trough the slider will not render. */
+/* Sliders are GTK scales sized only from CSS — without min-width/min-height
+   on the trough they collapse and never render. */
+#backlight-slider,
 #pulseaudio-slider {
   padding: 0 4px;
   margin: 0;
 }
 
+#backlight-slider trough,
 #pulseaudio-slider trough {
   min-width: 110px;
   min-height: 6px;
   border-radius: 3px;
   background-color: @surface1;
+}
+
+/* Filled portion — matches the colour of its leader icon */
+#backlight-slider highlight {
+  min-height: 6px;
+  border-radius: 3px;
+  background-color: @yellow;
 }
 
 #pulseaudio-slider highlight {
@@ -181,6 +201,13 @@ window#waybar.hidden {
   background-color: @teal;
 }
 
+/* Muted sink: the bar drops to zero, so grey it out as well */
+#pulseaudio-slider.muted highlight {
+  background-color: @overlay0;
+}
+
+/* Drag handle */
+#backlight-slider slider,
 #pulseaudio-slider slider {
   min-width: 12px;
   min-height: 12px;
@@ -189,16 +216,24 @@ window#waybar.hidden {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 
-/* Right: percentage readout */
+/* Revealed percentage chips. The volume one doubles as the mute toggle. */
+#backlight.percent,
 #pulseaudio.percent {
   padding: 0 7px;
   margin: 0;
+  border-radius: 8px;
   color: @subtext1;
   font-weight: 600;
+  transition: background-color 200ms ease, color 200ms ease;
 }
 
 #pulseaudio.percent:hover {
-  background-color: transparent;
+  background-color: @hover;
+  color: @text;
+}
+
+#pulseaudio.percent.muted {
+  color: @red;
 }
 
 #network {
@@ -223,6 +258,7 @@ window#waybar.hidden {
   color: @peach;
 }
 
+/* Critical is a filled pill so it is impossible to miss */
 #battery.critical:not(.charging) {
   color: @base;
   background-color: @red;
@@ -261,11 +297,9 @@ window#waybar.hidden {
   -gtk-icon-effect: highlight;
 }
 
-/* Hover feedback for interactive modules */
+/* Hover feedback for the clickable stand-alone modules */
 #cpu:hover,
 #memory:hover,
-#backlight:hover,
-#pulseaudio:hover,
 #network:hover,
 #battery:hover,
 #clock:hover,
