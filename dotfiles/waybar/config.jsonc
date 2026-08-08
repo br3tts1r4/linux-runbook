@@ -1,9 +1,9 @@
 // Waybar — floating island bar for Hyprland
 // Reference https://github.com/Alexays/Waybar/wiki/Configuration
 //
-// Icons are plain Unicode (Misc Symbols / Geometric Shapes / Block Elements)
-// plus the emoji speakers on the volume module — no Nerd Font and no icon
-// theme, but noto-fonts-emoji is required for the speaker to appear.
+// Icons are plain Unicode (Misc Symbols / Geometric Shapes / Block Elements);
+// cpu, mem and volume are plain words because this system has no font covering
+// those blocks. No Nerd Font, icon theme or emoji font is required.
 // Every interaction is a Waybar built-in except the clicks that open kitty,
 // htop, nmtui and wpctl, which are already part of this runbook's package set.
 {
@@ -145,7 +145,7 @@
   },
 
   // ── Volume ──────────────────────────────────────────────────────────────
-  // Collapsed the group is just the speaker. Click reveals [slider] [percent].
+  // Collapsed the group reads "vol 45%". Click reveals [slider] [on/off].
   "group/volume": {
     "orientation": "horizontal",
     "drawer": {
@@ -157,41 +157,43 @@
     "modules": [
       "pulseaudio",
       "pulseaudio/slider",
-      "pulseaudio#percent"
+      "pulseaudio#mute"
     ]
   },
 
-  // Group leader — icon only, no on-click* so the click reaches the drawer.
-  // Scroll changes the sink volume natively. The speaker gains sound waves as
-  // the volume rises and headphones swap the icon when that port is in use.
-  // These glyphs live in the emoji plane, so noto-fonts-emoji must be present
-  // (it is in dotfiles/arch/pkgs.txt); being colour bitmaps they ignore the
-  // colours set in style.css.
+  // Group leader — plain text, so no font can fail to draw it, and no
+  // on-click* so the click reaches the drawer. Scrolling here changes the sink
+  // volume natively. The tooltip names the sink being controlled: if that is
+  // not the device you are listening through, Waybar is driving another output
+  // and the slider will seem to do nothing.
+  // Keep "<" out of any format string — Waybar renders labels as Pango markup,
+  // so a stray "<" is parsed as a tag and blanks the label.
   "pulseaudio": {
-    "format": "{icon}",
-    "format-muted": "🔇",
-    "format-icons": ["🔈", "🔉", "🔊"],
+    "format": "vol {volume}%",
+    "format-muted": "vol muted",
     "scroll-step": 5,
     "max-volume": 100,
     "tooltip-format": "{desc}\n{volume}%"
   },
 
-  // Revealed control: drag or click on the bar to set the sink volume.
+  // Revealed control: drag or click anywhere on the bar to set the volume.
+  // zero-on-mute must stay false. With it on, a muted sink makes Waybar redraw
+  // the slider at min on every backend event, so a drag snaps back instantly
+  // and the control looks dead.
   "pulseaudio/slider": {
     "min": 0,
     "max": 100,
     "orientation": "horizontal",
-    "zero-on-mute": true,
+    "zero-on-mute": false,
     "unmute-on-volume-change": true
   },
 
-  // Revealed readout: scroll to fine-tune, click to mute (wireplumber's wpctl,
-  // already required by the PipeWire stack; pactl covers a PulseAudio system).
-  "pulseaudio#percent": {
-    "format": "{volume}%",
-    "format-muted": "{volume}%",
-    "scroll-step": 5,
-    "max-volume": 100,
+  // Revealed toggle: "on" / "off" for the sink mute state. wpctl comes with
+  // wireplumber, which the PipeWire stack already needs; pactl covers a plain
+  // PulseAudio system.
+  "pulseaudio#mute": {
+    "format": "on",
+    "format-muted": "off",
     "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle || pactl set-sink-mute @DEFAULT_SINK@ toggle",
     "tooltip-format": "Click to mute / unmute"
   },

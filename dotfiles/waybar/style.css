@@ -152,7 +152,7 @@ window#waybar.hidden {
   padding: 0 4px;
 }
 
-/* Group leaders — the icons that are always visible and take the click */
+/* Group leaders — always visible, and they take the click that opens a drawer */
 #backlight,
 #pulseaudio {
   padding: 0 9px;
@@ -165,12 +165,10 @@ window#waybar.hidden {
   color: @yellow;
 }
 
-/* The speaker is a colour emoji bitmap, so these colours only take effect if
-   a monochrome fallback font ends up drawing it. Mute is read from the icon
-   itself (🔇) and from the slider dropping to zero. */
+/* Volume leader is text ("vol 45%"), so it takes the accent colour. Swap it
+   for colour emoji and these colours stop applying — emoji are bitmaps. */
 #pulseaudio {
   color: @teal;
-  font-size: 12px;
 }
 
 #pulseaudio.muted,
@@ -222,9 +220,9 @@ window#waybar.hidden {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 
-/* Revealed percentage chips. The volume one doubles as the mute toggle. */
+/* Revealed chips: the brightness readout and the volume mute toggle. */
 #backlight.percent,
-#pulseaudio.percent {
+#pulseaudio.mute {
   padding: 0 7px;
   margin: 0;
   border-radius: 8px;
@@ -233,12 +231,12 @@ window#waybar.hidden {
   transition: background-color 200ms ease, color 200ms ease;
 }
 
-#pulseaudio.percent:hover {
+#pulseaudio.mute:hover {
   background-color: @hover;
   color: @text;
 }
 
-#pulseaudio.percent.muted {
+#pulseaudio.mute.muted {
   color: @red;
 }
 
