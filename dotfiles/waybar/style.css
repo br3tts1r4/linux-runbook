@@ -2,11 +2,13 @@
 
 @import url("colors.css");
 
-/* Base reset. The font list is fallback order, and GTK resolves it per glyph,
-   so the Unicode icons in config.jsonc come from DejaVu/Noto if the UI font
-   lacks them. */
+/* Base reset. The font list is fallback order and GTK resolves it per glyph,
+   so a symbol the UI font lacks is pulled from the next font that has it.
+   Names that are not installed are simply skipped. If an icon in the bar comes
+   out blank or as an empty box, no listed font covers it — check with
+   `fc-list :charset=2600 family`. */
 * {
-  font-family: "Adwaita Sans", "DejaVu Sans", "FreeSans", sans-serif;
+  font-family: "Adwaita Sans", "DejaVu Sans", "Noto Sans Symbols 2", "FreeSans", sans-serif;
   font-size: 13px;
   font-weight: 500;
   min-height: 0;
@@ -163,8 +165,12 @@ window#waybar.hidden {
   color: @yellow;
 }
 
+/* The speaker is a colour emoji bitmap, so these colours only take effect if
+   a monochrome fallback font ends up drawing it. Mute is read from the icon
+   itself (🔇) and from the slider dropping to zero. */
 #pulseaudio {
   color: @teal;
+  font-size: 12px;
 }
 
 #pulseaudio.muted,

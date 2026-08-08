@@ -29,6 +29,7 @@ fontconfig
 kmscon
 ttf-fira-code
 terminus-font
+noto-fonts-emoji
 hyprland
 xdg-desktop-portal-hyprland
 hyprpaper

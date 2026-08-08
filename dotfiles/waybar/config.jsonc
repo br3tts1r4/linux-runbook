@@ -1,8 +1,9 @@
 // Waybar — floating island bar for Hyprland
 // Reference https://github.com/Alexays/Waybar/wiki/Configuration
 //
-// Icons are plain Unicode (Misc Symbols / Geometric Shapes / Block Elements),
-// covered by DejaVu and Noto — no Nerd Font and no icon theme required.
+// Icons are plain Unicode (Misc Symbols / Geometric Shapes / Block Elements)
+// plus the emoji speakers on the volume module — no Nerd Font and no icon
+// theme, but noto-fonts-emoji is required for the speaker to appear.
 // Every interaction is a Waybar built-in except the clicks that open kitty,
 // htop, nmtui and wpctl, which are already part of this runbook's package set.
 {
@@ -81,18 +82,18 @@
     "tooltip-format-deactivated": "Sleep allowed — click to block"
   },
 
-  // ⚙ CPU load across all cores; click opens htop.
+  // CPU load across all cores; click opens htop.
   "cpu": {
     "interval": 3,
-    "format": "⚙ {usage}%",
+    "format": "cpu {usage}%",
     "tooltip": true,
     "on-click": "kitty -e htop"
   },
 
-  // ▦ RAM in use; tooltip carries the absolute figures.
+  // RAM in use; tooltip carries the absolute figures.
   "memory": {
     "interval": 5,
-    "format": "▦ {percentage}%",
+    "format": "mem {percentage}%",
     "tooltip-format": "{used:0.1f}G / {total:0.1f}G"
   },
 
@@ -144,7 +145,7 @@
   },
 
   // ── Volume ──────────────────────────────────────────────────────────────
-  // Collapsed the group is just "♪". Clicking it reveals [slider] [percent].
+  // Collapsed the group is just the speaker. Click reveals [slider] [percent].
   "group/volume": {
     "orientation": "horizontal",
     "drawer": {
@@ -161,10 +162,19 @@
   },
 
   // Group leader — icon only, no on-click* so the click reaches the drawer.
-  // Scroll changes the sink volume natively; muted state is struck through.
+  // Scroll changes the sink volume natively. The speaker gains sound waves as
+  // the volume rises and headphones swap the icon when that port is in use.
+  // These glyphs live in the emoji plane, so noto-fonts-emoji must be present
+  // (it is in dotfiles/arch/pkgs.txt); being colour bitmaps they ignore the
+  // colours set in style.css.
   "pulseaudio": {
-    "format": "♪",
-    "format-muted": "<s>♪</s>",
+    "format": "{icon}",
+    "format-muted": "🔇",
+    "format-icons": {
+      "headphone": "🎧",
+      "headset": "🎧",
+      "default": ["🔈", "🔉", "🔊"]
+    },
     "scroll-step": 5,
     "max-volume": 100,
     "tooltip-format": "{desc}\n{volume}%"
@@ -183,7 +193,7 @@
   // already required by the PipeWire stack; pactl covers a PulseAudio system).
   "pulseaudio#percent": {
     "format": "{volume}%",
-    "format-muted": "<s>{volume}%</s>",
+    "format-muted": "{volume}%",
     "scroll-step": 5,
     "max-volume": 100,
     "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle || pactl set-sink-mute @DEFAULT_SINK@ toggle",
